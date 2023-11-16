@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.rupizza.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="391.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Welcome Page">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="600.0" style="-fx-background-color: lightblue;" />
+                </content>
+            </Tab>
+          <Tab text="Order Page">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="600.0" style="-fx-background-color: lightblue;">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@../image/DeluxePizza.jpg" />
+                         </image> </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="344.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="54.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="357.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </VBox>
