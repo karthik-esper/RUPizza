@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rupizza.HelloController">
    <children>
       <TabPane prefHeight="391.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -52,7 +52,7 @@
                              <image>
                                  <Image url="@../image/BYOzza.jpg" />
                              </image> </ImageView>
-                        <Button layoutX="35.0" layoutY="15.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="252.0" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="SpecialtyButton" layoutX="35.0" layoutY="15.0" mnemonicParsing="false" onAction="#createSpecialty" prefHeight="150.0" prefWidth="252.0" textAlignment="CENTER" wrapText="true">
                          <graphic>
                              <VBox alignment="CENTER">
                             <ImageView fitHeight="140.0" fitWidth="182.0" layoutX="51.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
@@ -66,7 +66,7 @@
                              </VBox>
                          </graphic>
                         </Button>
-                         <Button layoutX="315.0" layoutY="15.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="252.0" textAlignment="CENTER" wrapText="true">
+                         <Button fx:id="buildButton" layoutX="315.0" layoutY="15.0" mnemonicParsing="false" onAction="#createCustom" prefHeight="150.0" prefWidth="252.0" textAlignment="CENTER" wrapText="true">
                              <graphic>
                                  <VBox alignment="CENTER">
                                      <ImageView fitHeight="140.0" fitWidth="182.0" layoutX="51.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
@@ -80,7 +80,7 @@
                                  </VBox>
                              </graphic>
                          </Button>
-                         <Button layoutX="315.0" layoutY="185.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="252.0" textAlignment="CENTER" wrapText="true">
+                         <Button fx:id="HistoryButton" layoutX="315.0" layoutY="185.0" mnemonicParsing="false" onAction="#viewOrderHistory" prefHeight="150.0" prefWidth="252.0" textAlignment="CENTER" wrapText="true">
                              <graphic>
                                  <VBox alignment="CENTER" prefHeight="140.0" prefWidth="222.0">
                                      <ImageView fitHeight="125.0" fitWidth="167.0" layoutX="51.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
@@ -94,7 +94,7 @@
                                  </VBox>
                              </graphic>
                          </Button>
-                         <Button layoutX="35.0" layoutY="185.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="252.0" textAlignment="CENTER" wrapText="true">
+                         <Button fx:id="OrderButton" layoutX="35.0" layoutY="185.0" mnemonicParsing="false" onAction="#viewCurrentOrder" prefHeight="150.0" prefWidth="252.0" textAlignment="CENTER" wrapText="true">
                              <graphic>
                                  <VBox alignment="CENTER">
                                      <ImageView fitHeight="140.0" fitWidth="182.0" layoutX="51.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
