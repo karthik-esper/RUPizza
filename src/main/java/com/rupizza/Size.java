@@ -23,7 +23,7 @@ public enum Size {
      * Getter method for pizza size.
      * @return size of pizza.
      */
-    private String getPizzaSize () {
+    public String getPizzaSize () {
         return this.pizzaSize;
     }
 }
