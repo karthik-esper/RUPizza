@@ -38,6 +38,25 @@ public class ruPizzaController {
         }
     }
     @FXML
+    protected void createBuildYourOwn() {
+        try {
+            // Load the FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(ruPizzaMain.class.getResource("BuildYourOwn.fxml"));
+            Scene specialtyScene = new Scene(fxmlLoader.load(), 400, 400);
+
+            // Create a new stage (window)
+            Stage stage = new Stage();
+            stage.setTitle("Build your own PIZZA!");
+            stage.setScene(specialtyScene);
+
+            // Show the new stage
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
     protected void createCustom () {
         System.out.println("Button got clicked");
     }

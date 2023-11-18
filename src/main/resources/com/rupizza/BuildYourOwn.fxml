@@ -6,13 +6,42 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rupizza.BYOController">
    <children>
-      <VBox layoutX="14.0" layoutY="14.0" prefHeight="375.0" prefWidth="375.0">
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="375.0" prefWidth="181.0">
          <children>
             <ImageView fitHeight="162.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../image/BYOzza.jpg" />
             </image> </ImageView>
-            <ListView fx:id="byoView" prefHeight="200.0" prefWidth="200.0" />
+            <Label text="Toppings" />
+            <CheckBox fx:id="sausage" mnemonicParsing="false" onAction="#topAssign" text="Sausage" />
+            <CheckBox fx:id="pepperoni" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onAction="#topAssign" text="Pepperoni" />
+            <CheckBox fx:id="beef" layoutX="10.0" layoutY="168.0" mnemonicParsing="false" onAction="#topAssign" text="Beef" />
+            <CheckBox fx:id="ham" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Ham" />
+            <CheckBox fx:id="shrimp" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Shrimp" />
+            <CheckBox fx:id="squid" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Squid" />
+            <CheckBox fx:id="crab_meat" layoutX="10.0" layoutY="204.0" mnemonicParsing="false" onAction="#topAssign" text="Crab Meat" />
+            <CheckBox fx:id="green_pepper" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Green Pepper" />
+            <CheckBox fx:id="onion" layoutX="10.0" layoutY="222.0" mnemonicParsing="false" onAction="#topAssign" text="Onion" />
+            <CheckBox fx:id="mushroom" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Mushroom" />
+            <CheckBox fx:id="black_olive" layoutX="10.0" layoutY="240.0" mnemonicParsing="false" onAction="#topAssign" text="Black Olive" />
+            <CheckBox fx:id="pineapple" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Pineapple" />
+            <CheckBox fx:id="jalapeno" layoutX="10.0" layoutY="348.0" mnemonicParsing="false" onAction="#topAssign" text="Jalapeno" />
          </children></VBox>
+      <VBox layoutX="195.0" layoutY="13.0" prefHeight="67.0" prefWidth="181.0">
+         <children>
+            <Label text="Sauce" />
+            <RadioButton mnemonicParsing="false" text="Tomato" />
+            <RadioButton layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="Alfredo" />
+            <VBox prefHeight="67.0" prefWidth="181.0">
+               <children>
+                  <Label text="Size" />
+                  <RadioButton mnemonicParsing="false" text="Small" />
+                  <RadioButton layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="Medium" />
+                  <RadioButton layoutX="10.0" layoutY="46.0" mnemonicParsing="false" text="Large" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <Button layoutX="195.0" layoutY="200.0" mnemonicParsing="false" text="BYOP!" />
    </children>
 </AnchorPane>
