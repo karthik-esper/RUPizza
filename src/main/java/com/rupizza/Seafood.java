@@ -6,12 +6,10 @@ public class Seafood extends Pizza{
     private static final double BASE_PRICE = 17.99; // Base price of the pizza
     private static final double ADD_MEDIUM = 2.00; // extra charge for medium size
     private static final double ADD_LARGE = 4.00; // extra charge for large size
-    private Seafood (Size size, boolean extraSauce, boolean extraCheese) {
+    public Seafood () {
         this.sauce = Sauce.AL;
-        this.size = size;
+        this.size = Size.S;
         this.toppings = createToppings();
-        this.extraSauce = extraSauce;
-        this.extraCheese = extraCheese;
     }
 
     @Override

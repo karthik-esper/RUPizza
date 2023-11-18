@@ -7,12 +7,10 @@ public class Meatzza extends Pizza{
     private static final double ADD_MEDIUM = 2.00; // extra charge for medium size
     private static final double ADD_LARGE = 4.00; // extra charge for large size
 
-    private Meatzza (Size size, boolean extraSauce, boolean extraCheese) {
+    public Meatzza() {
         this.sauce = Sauce.TO;
-        this.size = size;
+        this.size = Size.S;
         this.toppings = createToppings();
-        this.extraSauce = extraSauce;
-        this.extraCheese = extraCheese;
     }
     @Override
     public double price() {
