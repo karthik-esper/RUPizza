@@ -56,18 +56,44 @@ public class ruPizzaController {
             e.printStackTrace();
         }
     }
-    @FXML
-    protected void createCustom () {
-        System.out.println("Button got clicked");
-    }
 
     @FXML
     protected void viewCurrentOrder () {
-        System.out.println("Button got clicked");
+        try {
+            // Load the FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(ruPizzaMain.class.getResource("Orders.fxml"));
+            Scene orderScene = new Scene(fxmlLoader.load(), 400, 400);
+
+            // Create a new stage (window)
+            Stage stage = new Stage();
+            stage.setTitle("Current Order");
+            stage.setScene(orderScene);
+
+            // Show the new stage
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     protected void viewOrderHistory () {
-        System.out.println("Button got clicked");
+        try {
+            // Load the FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(ruPizzaMain.class.getResource("StoreOrders.fxml"));
+            Scene orderScene = new Scene(fxmlLoader.load(), 400, 400);
+
+            // Create a new stage (window)
+            Stage stage = new Stage();
+            stage.setTitle("Store Order History");
+            stage.setScene(orderScene);
+
+            // Show the new stage
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

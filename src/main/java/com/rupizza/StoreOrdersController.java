@@ -1,4 +1,4 @@
 package com.rupizza;
 
-//public class StoreOrdersController {
-//}
+public class StoreOrdersController {
+}
