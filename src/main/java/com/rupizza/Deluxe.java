@@ -37,4 +37,28 @@ public class Deluxe extends Pizza{
         toppers.add(Topping.MU);
         return toppers;
     }
+
+    /**
+     * Setter method to change pizza size.
+     * @param size size of the pizza.
+     */
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    /**
+     * Setter method to change whether there is extra sauce or not.
+     * @param extraSauce whether there is extra sauce or not.
+     */
+    public void setExtraSauce(boolean extraSauce) {
+        this.extraSauce = extraSauce;
+    }
+
+    /**
+     * Setter method to change whether there is extra sauce or not.
+     * @param extraCheese whether there is extra cheese or not.
+     */
+    public void setExtraCheese(boolean extraCheese) {
+        this.extraCheese = extraCheese;
+    }
 }
