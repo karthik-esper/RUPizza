@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import java.util.ArrayList;
 
 public class SpecialtyController {
+    protected StoreOrders storeOrder = new StoreOrders();
     @FXML
     private ListView<Topping> specialtyToppings;
     private ObservableList<Topping> specialtyItems;
