@@ -14,12 +14,31 @@
                         <Image url="@../image/DeluxePizza.jpg" />
                     </image> </ImageView>
             <ListView fx:id="specialtyToppings" prefHeight="200.0" prefWidth="200.0" />
-            <Label fx:id="priceBox" prefHeight="28.0" prefWidth="49.0" text="Price:">
+            <Label fx:id="priceBox" prefHeight="28.0" prefWidth="129.0" text="Price:">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
             </children></VBox>
       <ComboBox fx:id="specialtyChoices" layoutX="232.0" layoutY="35.0" prefWidth="150.0" />
+      <ComboBox fx:id="sizeChoices" layoutX="236.0" layoutY="147.0" prefWidth="150.0" />
+      <Label layoutX="242.0" layoutY="239.0" prefHeight="30.0" prefWidth="69.0" text="Extras:" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="242.0" layoutY="273.0" mnemonicParsing="false" text="Extra Sauce" />
+      <RadioButton layoutX="243.0" layoutY="298.0" mnemonicParsing="false" text="Extra Cheese" />
+      <Label layoutX="236.0" layoutY="6.0" prefHeight="26.0" prefWidth="82.0" text="Select Type:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="236.0" layoutY="123.0" prefHeight="18.0" prefWidth="108.0" text="Select Size:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorMessage" layoutX="236.0" layoutY="106.0" prefHeight="18.0" prefWidth="124.0" />
     </children>
 </AnchorPane>

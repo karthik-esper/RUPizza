@@ -4,25 +4,44 @@ import javafx.collections.ObservableList;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.collections.FXCollections;
 
 import java.util.ArrayList;
 
+import static com.rupizza.PizzaMaker.createPizza;
+
 public class SpecialtyController {
     protected StoreOrders storeOrder = new StoreOrders();
+    protected PizzaMaker pizzaMaker = new PizzaMaker();
     @FXML
     private ListView<Topping> specialtyToppings;
     private ObservableList<Topping> specialtyItems;
     @FXML
     private ComboBox<String> specialtyChoices;
+    @FXML
+    private ComboBox<String> sizeChoices;
+    @FXML
+    private Label priceBox;
+    @FXML
+    private Label errorMessage;
 
     @FXML
     public void initialize() {
         specialtyChoices.setItems(FXCollections.observableArrayList(
-                "Deluxe", "Supreme", "Meatzza", "Pepperoni", "Seafood")
-        );
+                "Deluxe", "Supreme", "Meatzza", "Pepperoni", "Seafood"
+        ));
+        sizeChoices.setItems(FXCollections.observableArrayList(
+                "Small", "Medium", "Large"
+        ));
         specialtyToppings.setItems(FXCollections.observableArrayList());
+        pickerFunction();
+        sizeFunction();
+
+    }
+    @FXML
+    protected void pickerFunction () {
         specialtyChoices.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 ObservableList<Topping> toppingList = FXCollections.observableArrayList();
@@ -40,6 +59,24 @@ public class SpecialtyController {
                 }
                 else {toppingList = createToppingList("Seafood");}
                 specialtyToppings.setItems(toppingList);
+                Pizza temp = createPizza(newValue);
+                priceBox.setText("Price: " + String.valueOf(temp.price()));
+
+            }
+        });
+    }
+    @FXML
+    protected void sizeFunction () {
+        sizeChoices.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                String pizzaType = specialtyChoices.getSelectionModel().getSelectedItem();
+                if (pizzaType != null) {
+                    Pizza temp = createPizza(pizzaType);
+                    temp.setSize(Size.valueOf(newValue.substring(0,1).toUpperCase()));
+                    Double price = temp.price();
+                    priceBox.setText("Price: " + String.format("%.2f",price));
+                }
+                else {errorMessage.setText("Select type first.");}
             }
         });
     }

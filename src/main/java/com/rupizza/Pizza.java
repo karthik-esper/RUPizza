@@ -14,4 +14,6 @@ public abstract class Pizza {
     protected boolean extraCheese;
 
     public abstract double price(); //polymorphism
+
+    public abstract void setSize(Size size); //setter method
 }

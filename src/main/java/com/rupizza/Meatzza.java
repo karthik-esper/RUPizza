@@ -37,6 +37,7 @@ public class Meatzza extends Pizza{
      * Setter method to change pizza size.
      * @param size size of the pizza.
      */
+    @Override
     public void setSize(Size size) {
         this.size = size;
     }
