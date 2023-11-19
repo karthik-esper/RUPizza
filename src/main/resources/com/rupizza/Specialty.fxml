@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rupizza.SpecialtyController">
     <children>
@@ -13,6 +14,11 @@
                         <Image url="@../image/DeluxePizza.jpg" />
                     </image> </ImageView>
             <ListView fx:id="specialtyToppings" prefHeight="200.0" prefWidth="200.0" />
+            <Label fx:id="priceBox" prefHeight="28.0" prefWidth="49.0" text="Price:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
             </children></VBox>
       <ComboBox fx:id="specialtyChoices" layoutX="232.0" layoutY="35.0" prefWidth="150.0" />
     </children>

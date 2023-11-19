@@ -37,4 +37,9 @@ public enum Topping {
     public String getToppingName () {
         return this.toppingName;
     }
+
+    @Override
+    public String toString() {
+        return this.getToppingName();
+    }
 }
