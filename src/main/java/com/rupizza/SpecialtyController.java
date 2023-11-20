@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.collections.FXCollections;
+import javafx.scene.control.RadioButton;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,13 @@ public class SpecialtyController {
     private Label priceBox;
     @FXML
     private Label errorMessage;
+    @FXML
+    private Label buttonError;
+    @FXML
+    private RadioButton sauceSetter;
+    @FXML
+    private RadioButton cheeseSetter;
+
 
     @FXML
     public void initialize() {
@@ -79,6 +87,34 @@ public class SpecialtyController {
                 else {errorMessage.setText("Select type first.");}
             }
         });
+    }
+    @FXML
+    protected void pizzaButton() {
+        if (specialtyChoices.getSelectionModel().getSelectedItem() != null) {
+            Pizza toMake = createPizza(specialtyChoices.getSelectionModel().getSelectedItem());
+            if (sizeChoices.getSelectionModel().getSelectedItem() != null) {
+                String size = sizeChoices.getSelectionModel().getSelectedItem();
+                toMake.setSize(Size.valueOf(size.substring(0,1).toUpperCase()));
+                if (sauceSetter.isSelected()) {toMake.setExtraSauce(true);}
+                if (cheeseSetter.isSelected()) {toMake.setExtraCheese(true);}
+                buttonError.setText("Pizza was created!");
+                clearAll();
+            }
+            else {
+                buttonError.setText("Size not selected!");
+            }
+        }
+        else {buttonError.setText("Please select a pizza type!");}
+    }
+
+    @FXML
+    protected void clearAll () {
+        specialtyToppings.setItems(FXCollections.observableArrayList());
+        specialtyChoices.getSelectionModel().clearSelection();
+        sizeChoices.getSelectionModel().clearSelection();
+        cheeseSetter.setSelected(false);
+        sauceSetter.setSelected(false);
+        priceBox.setText("Price:");
     }
 
     protected ObservableList<Topping> createToppingList(String type) {

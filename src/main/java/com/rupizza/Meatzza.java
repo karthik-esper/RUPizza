@@ -46,6 +46,7 @@ public class Meatzza extends Pizza{
      * Setter method to change whether there is extra sauce or not.
      * @param extraSauce whether there is extra sauce or not.
      */
+    @Override
     public void setExtraSauce(boolean extraSauce) {
         this.extraSauce = extraSauce;
     }
@@ -54,6 +55,7 @@ public class Meatzza extends Pizza{
      * Setter method to change whether there is extra sauce or not.
      * @param extraCheese whether there is extra cheese or not.
      */
+    @Override
     public void setExtraCheese(boolean extraCheese) {
         this.extraCheese = extraCheese;
     }
