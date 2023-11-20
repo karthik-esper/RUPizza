@@ -68,6 +68,7 @@ public class SpecialtyController {
                 else {toppingList = createToppingList("Seafood");}
                 specialtyToppings.setItems(toppingList);
                 Pizza temp = createPizza(newValue);
+                sizeChoices.getSelectionModel().clearSelection();
                 priceBox.setText("Price: " + String.valueOf(temp.price()));
 
             }
