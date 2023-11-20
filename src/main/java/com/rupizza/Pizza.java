@@ -20,4 +20,6 @@ public abstract class Pizza {
 
     public abstract void setExtraCheese(boolean extraCheese); //setter method
 
+    public abstract String toString();
+
 }

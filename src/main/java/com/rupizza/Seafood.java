@@ -59,4 +59,22 @@ public class Seafood extends Pizza{
         this.extraCheese = extraCheese;
     }
 
+    @Override
+    public String toString() {
+        String pizza = "[Seafood]";
+        for (int i = 0; i < this.toppings.size(); i++) {
+            pizza += " " + toppings.get(i).toString();
+        }
+        pizza += " " + this.sauce.getFlavor();
+        pizza += " " + this.size.getPizzaSize();
+        if (this.extraCheese) {
+            pizza += " extraCheese ";
+        }
+        if (this.extraSauce) {
+            pizza += " extraSauce ";
+        }
+        pizza += String.format("%.2f", this.price());
+        return pizza;
+    }
+
 }
