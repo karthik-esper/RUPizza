@@ -101,6 +101,8 @@ public class SpecialtyController {
                 buttonError.setText("Pizza was created!");
                 System.out.println(toMake.toString());
                 clearAll();
+                Order currentOrder = Store.getInstance().getCurrentOrder();
+                currentOrder.addToOrder(toMake);
             }
             else {
                 buttonError.setText("Size not selected!");

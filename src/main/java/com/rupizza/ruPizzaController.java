@@ -18,6 +18,13 @@ public class ruPizzaController {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
 
+    Store ruPizza = Store.getInstance();
+
+    public void initialize () {
+        Order currentOrder = ruPizza.getCurrentOrder();
+        StoreOrders storeOrders = ruPizza.getOrderHistory();
+    }
+
     @FXML
     protected void createSpecialty () {
         try {
@@ -62,7 +69,7 @@ public class ruPizzaController {
         try {
             // Load the FXML file
             FXMLLoader fxmlLoader = new FXMLLoader(ruPizzaMain.class.getResource("Orders.fxml"));
-            Scene orderScene = new Scene(fxmlLoader.load(), 400, 400);
+            Scene orderScene = new Scene(fxmlLoader.load(), 500, 400);
 
             // Create a new stage (window)
             Stage stage = new Stage();
