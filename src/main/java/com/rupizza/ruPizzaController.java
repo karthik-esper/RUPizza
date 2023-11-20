@@ -69,7 +69,7 @@ public class ruPizzaController {
         try {
             // Load the FXML file
             FXMLLoader fxmlLoader = new FXMLLoader(ruPizzaMain.class.getResource("Orders.fxml"));
-            Scene orderScene = new Scene(fxmlLoader.load(), 500, 400);
+            Scene orderScene = new Scene(fxmlLoader.load(), 600, 400);
 
             // Create a new stage (window)
             Stage stage = new Stage();
