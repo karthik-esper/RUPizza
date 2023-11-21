@@ -9,7 +9,7 @@
     <children>
         <VBox layoutX="14.0" layoutY="14.0" prefHeight="375.0" prefWidth="217.0">
             <children>
-                <ImageView fitHeight="131.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="false">
+                <ImageView fx:id = "pizzaPic" fitHeight="131.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="false">
                     <image>
                         <Image url="@../image/DeluxePizza.jpg" />
                     </image> </ImageView>

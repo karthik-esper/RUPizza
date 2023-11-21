@@ -8,7 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.collections.FXCollections;
 import javafx.scene.control.RadioButton;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 
 import static com.rupizza.PizzaMaker.createPizza;
@@ -33,6 +34,8 @@ public class SpecialtyController {
     private RadioButton sauceSetter;
     @FXML
     private RadioButton cheeseSetter;
+    @FXML
+    private ImageView pizzaPic;
 
 
     @FXML
@@ -66,6 +69,7 @@ public class SpecialtyController {
                     toppingList = createToppingList("Pepperoni");
                 }
                 else {toppingList = createToppingList("Seafood");}
+                changeImage(newValue);
                 specialtyToppings.setItems(toppingList);
                 Pizza temp = createPizza(newValue);
                 sizeChoices.getSelectionModel().clearSelection();
@@ -142,5 +146,25 @@ public class SpecialtyController {
             return FXCollections.observableArrayList(
                     Topping.SH, Topping.SQ, Topping.CM);
         }
+    }
+
+    @FXML
+    protected void changeImage(String type) {
+        String url = "";
+        if (type.equals("Deluxe")) {
+            url = "/com/image/DeluxePizza.jpg";
+        }
+        else if (type.equals("Supreme")) {
+            url = "/com/image/SupremePizza.jpg";
+        }
+        else if (type.equals("Meatzza")) {
+            url = "/com/image/MeatzzaPizza.jpg";
+        }
+        else if (type.equals("Pepperoni")) {
+            url = "/com/image/RoniPizza.jpg";
+        }
+        else {url = "/com/image/OceanZza.jpg";}
+        Image newPic = new Image(url);
+        pizzaPic.setImage(newPic);
     }
 }

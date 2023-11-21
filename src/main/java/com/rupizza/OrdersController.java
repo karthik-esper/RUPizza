@@ -12,6 +12,8 @@ public class OrdersController {
     private ListView<String> orderView;
     private ObservableList<String> orderPizzas;
     @FXML
+    private TextField orderID;
+    @FXML
     private TextField subtotalBox;
     @FXML
     private TextField salesTax;
@@ -22,6 +24,7 @@ public class OrdersController {
         Order currentOrder = Store.getInstance().getCurrentOrder();
         orderView.setItems(FXCollections.observableArrayList(currentOrder.printList()));
         calculatePrice();
+        orderID.setText(String.valueOf(currentOrder.orderNumber));
     }
 
     protected void calculatePrice() {
@@ -33,6 +36,28 @@ public class OrdersController {
         subtotalBox.setText(String.format("%.2f",price));
         salesTax.setText(String.format("%.2f",price * .0625));
         orderTotal.setText(String.format("%.2f",price * 1.0625));
+    }
+    @FXML
+    protected void deletePizza () {
+        if (orderView.getSelectionModel().getSelectedIndex() != -1) {
+            Order currentOrder = Store.getInstance().getCurrentOrder();
+            int index = orderView.getSelectionModel().getSelectedIndex();
+            currentOrder.orderItems.remove(index);
+            orderView.getItems().remove(index);
+        }
+        else {
+            showAlert("No Selection");
+        }
+        calculatePrice();
+    }
 
+    protected void showAlert(String type) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Warning!");
+        if (type.equalsIgnoreCase("No Selection")){
+            alert.setContentText("You have not selected a pizza to remove.");
+        }
+
+        alert.showAndWait();
     }
 }

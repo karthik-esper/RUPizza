@@ -18,11 +18,13 @@
          </font>
       </Label>
       <TextField fx:id="orderID" editable="false" layoutX="115.0" layoutY="48.0" />
-      <TextField fx:id="subtotalBox" editable="false" layoutX="119.0" layoutY="337.0" />
-      <TextField fx:id="salesTax" editable="false" layoutX="343.0" layoutY="337.0" />
-      <TextField fx:id="orderTotal" editable="false" layoutX="119.0" layoutY="373.0" />
-      <Label layoutX="45.0" layoutY="336.0" prefHeight="26.0" prefWidth="60.0" text="Subtotal:" />
-      <Label layoutX="45.0" layoutY="373.0" prefHeight="26.0" prefWidth="74.0" text="Order Total:" />
-      <Label layoutX="308.0" layoutY="341.0" prefHeight="18.0" prefWidth="31.0" text="Tax:" />
+      <TextField fx:id="subtotalBox" editable="false" layoutX="107.0" layoutY="337.0" prefHeight="26.0" prefWidth="100.0" />
+      <TextField fx:id="salesTax" editable="false" layoutX="284.0" layoutY="337.0" prefHeight="26.0" prefWidth="108.0" />
+      <TextField fx:id="orderTotal" editable="false" layoutX="108.0" layoutY="373.0" prefHeight="26.0" prefWidth="100.0" />
+      <Label layoutX="38.0" layoutY="336.0" prefHeight="26.0" prefWidth="60.0" text="Subtotal:" />
+      <Label layoutX="35.0" layoutY="373.0" prefHeight="26.0" prefWidth="74.0" text="Order Total:" />
+      <Label layoutX="238.0" layoutY="341.0" prefHeight="18.0" prefWidth="31.0" text="Tax:" />
+      <Button layoutX="433.0" layoutY="338.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="129.0" text="Delete Pizza" onAction="#deletePizza"/>
+      <Button layoutX="433.0" layoutY="374.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Place Order" />
    </children>
 </AnchorPane>

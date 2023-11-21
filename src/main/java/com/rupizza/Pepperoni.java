@@ -64,12 +64,12 @@ public class Pepperoni extends Pizza{
             pizza += " " + toppings.get(i).toString();
         }
         pizza += " " + this.sauce.getFlavor();
-        pizza += " " + this.size.getPizzaSize();
+        pizza += " " + this.size.getPizzaSize() + " ";
         if (this.extraCheese) {
-            pizza += " extraCheese ";
+            pizza += "extraCheese ";
         }
         if (this.extraSauce) {
-            pizza += " extraSauce ";
+            pizza += "extraSauce ";
         }
         pizza += String.format("%.2f", this.price());
         return pizza;

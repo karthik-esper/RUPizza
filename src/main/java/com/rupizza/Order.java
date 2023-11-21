@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Order {
-    protected float orderNumber;
+    protected int orderNumber;
     protected ArrayList<Pizza> orderItems;
 
     public Order () {
@@ -26,6 +26,10 @@ public class Order {
             count++;
         }
         orderItems.add(count,p);
+    }
+
+    public void incrementOrder () {
+        this.orderNumber++;
     }
 
     public ArrayList<String> printList () {
