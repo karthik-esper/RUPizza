@@ -14,6 +14,10 @@ public class OrdersController {
     @FXML
     private TextField subtotalBox;
     @FXML
+    private TextField salesTax;
+    @FXML
+    private TextField orderTotal;
+    @FXML
     public void initialize() {
         Order currentOrder = Store.getInstance().getCurrentOrder();
         orderView.setItems(FXCollections.observableArrayList(currentOrder.printList()));
@@ -27,5 +31,8 @@ public class OrdersController {
             price += currentOrder.orderItems.get(i).price();
         }
         subtotalBox.setText(String.format("%.2f",price));
+        salesTax.setText(String.format("%.2f",price * .0625));
+        orderTotal.setText(String.format("%.2f",price * 1.0625));
+
     }
 }
