@@ -71,6 +71,7 @@ public class OrdersController {
         clearAll();
         currentOrder.incrementOrder();
         orderID.setText(String.valueOf(currentOrder.getOrderNumber()));
+        currentOrder.clearOrder();
 
     }
 

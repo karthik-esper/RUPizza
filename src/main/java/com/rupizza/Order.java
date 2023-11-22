@@ -1,4 +1,6 @@
 package com.rupizza;
+import javafx.collections.FXCollections;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -50,6 +52,10 @@ public class Order {
 
     public double getPrice (int index) {
         return orderItems.get(index).price();
+    }
+
+    public void clearOrder () {
+        this.orderItems = new ArrayList<Pizza>();
     }
 
 }

@@ -16,7 +16,6 @@ import static com.rupizza.PizzaMaker.createPizza;
 
 public class SpecialtyController {
     protected StoreOrders storeOrder = new StoreOrders();
-    protected PizzaMaker pizzaMaker = new PizzaMaker();
     @FXML
     private ListView<Topping> specialtyToppings;
     private ObservableList<Topping> specialtyItems;
