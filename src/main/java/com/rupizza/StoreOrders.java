@@ -3,6 +3,19 @@ package com.rupizza;
 import java.util.ArrayList;
 
 public class StoreOrders {
-    protected ArrayList<Order> orderList;
-    protected static int nextOrder;
+    private ArrayList<Order> orderList;
+    private int nextOrder;
+
+    public StoreOrders () {
+        this.orderList = new ArrayList<Order>();
+        this.nextOrder = 1;
+    }
+    public void addOrder (Order o) {
+        orderList.add(o);
+    }
+
+    public int getNextOrder() {
+        this.nextOrder++;
+        return this.nextOrder;
+    }
 }

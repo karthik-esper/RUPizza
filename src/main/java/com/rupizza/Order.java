@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Order {
-    protected int orderNumber;
-    protected ArrayList<Pizza> orderItems;
+    private int orderNumber;
+    private ArrayList<Pizza> orderItems;
 
     public Order () {
-        this.orderNumber = 0;
+        this.orderNumber = 1;
         this.orderItems = new ArrayList<Pizza>();
     }
 
-    public float getOrderNumber () {
+    public int getOrderNumber () {
         return this.orderNumber;
     }
 
@@ -38,6 +38,18 @@ public class Order {
             view.add(this.orderItems.get(i).toString());
         }
         return view;
+    }
+
+    public void removeItem (int index) {
+        orderItems.remove(index);
+    }
+
+    public int getSize () {
+        return orderItems.size();
+    }
+
+    public double getPrice (int index) {
+        return orderItems.get(index).price();
     }
 
 }

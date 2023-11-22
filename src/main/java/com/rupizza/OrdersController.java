@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 
+import java.util.ArrayList;
+
 public class OrdersController {
     @FXML
     private ListView<String> orderView;
@@ -24,14 +26,14 @@ public class OrdersController {
         Order currentOrder = Store.getInstance().getCurrentOrder();
         orderView.setItems(FXCollections.observableArrayList(currentOrder.printList()));
         calculatePrice();
-        orderID.setText(String.valueOf(currentOrder.orderNumber));
+        orderID.setText(String.valueOf(currentOrder.getOrderNumber()));
     }
 
     protected void calculatePrice() {
         Order currentOrder = Store.getInstance().getCurrentOrder();
         double price = 0;
-        for (int i = 0; i < currentOrder.orderItems.size(); i++) {
-            price += currentOrder.orderItems.get(i).price();
+        for (int i = 0; i < currentOrder.getSize(); i++) {
+            price += currentOrder.getPrice(i);
         }
         subtotalBox.setText(String.format("%.2f",price));
         salesTax.setText(String.format("%.2f",price * .0625));
@@ -42,7 +44,7 @@ public class OrdersController {
         if (orderView.getSelectionModel().getSelectedIndex() != -1) {
             Order currentOrder = Store.getInstance().getCurrentOrder();
             int index = orderView.getSelectionModel().getSelectedIndex();
-            currentOrder.orderItems.remove(index);
+            currentOrder.removeItem(index);
             orderView.getItems().remove(index);
         }
         else {
@@ -59,5 +61,25 @@ public class OrdersController {
         }
 
         alert.showAndWait();
+    }
+
+    @FXML
+    protected void placeOrder () {
+        StoreOrders currentStore = Store.getInstance().getOrderHistory();
+        Order currentOrder = Store.getInstance().getCurrentOrder();
+        currentStore.addOrder(currentOrder);
+        clearAll();
+        currentOrder.incrementOrder();
+        orderID.setText(String.valueOf(currentOrder.getOrderNumber()));
+
+    }
+
+    @FXML
+    protected void clearAll() {
+        orderID.setText("");
+        orderView.setItems(FXCollections.observableArrayList());
+        subtotalBox.setText("");
+        salesTax.setText("");
+        orderTotal.setText("");
     }
 }

@@ -24,7 +24,7 @@
       <Label layoutX="38.0" layoutY="336.0" prefHeight="26.0" prefWidth="60.0" text="Subtotal:" />
       <Label layoutX="35.0" layoutY="373.0" prefHeight="26.0" prefWidth="74.0" text="Order Total:" />
       <Label layoutX="238.0" layoutY="341.0" prefHeight="18.0" prefWidth="31.0" text="Tax:" />
-      <Button layoutX="433.0" layoutY="338.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="129.0" text="Delete Pizza" onAction="#deletePizza"/>
-      <Button layoutX="433.0" layoutY="374.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Place Order" />
+      <Button layoutX="433.0" layoutY="338.0" mnemonicParsing="false" onAction="#deletePizza" prefHeight="26.0" prefWidth="129.0" text="Delete Pizza" />
+      <Button fx:id="placeOrder" layoutX="433.0" layoutY="374.0" mnemonicParsing="false" onAction="#placeOrder" prefHeight="26.0" prefWidth="130.0" text="Place Order" />
    </children>
 </AnchorPane>
