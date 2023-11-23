@@ -3,6 +3,7 @@ package com.rupizza;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -24,7 +25,9 @@ public class StoreOrdersController {
         StoreOrders currentStore = Store.getInstance().getOrderHistory();
         ArrayList<Integer> orders = new ArrayList<>();
         for (int i = 0; i < currentStore.getNumOrders(); i++) {
-            orders.add(i,i+1);
+            if (currentStore.getOrder(i).getSize() != 0) {
+                orders.add(i, i + 1);
+            }
         }
         ordersAvailable.setItems(FXCollections.observableArrayList(orders));
         orderList.setItems(FXCollections.observableArrayList());
@@ -40,5 +43,30 @@ public class StoreOrdersController {
                 orderTotal.setText(String.format("%.2f",orderToDisplay.orderPrice()));
             }
         });
+    }
+
+    @FXML
+    protected void deleteOrder () {
+        if (ordersAvailable.getValue() != -1) {
+            StoreOrders currentStore = Store.getInstance().getOrderHistory();
+            int index = ordersAvailable.getValue();
+            currentStore.removeOrder(index-1);
+            orderList.getItems().remove(index-1);
+            orderTotal.setText("");
+            ordersAvailable.getSelectionModel().clearSelection();
+        }
+        else {
+            showAlert("No Selection");
+        }
+    }
+
+    protected void showAlert(String type) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Warning!");
+        if (type.equalsIgnoreCase("No Selection")){
+            alert.setContentText("You have not selected an order to remove.");
+        }
+
+        alert.showAndWait();
     }
 }

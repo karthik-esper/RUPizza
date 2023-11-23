@@ -18,6 +18,10 @@ public class Store {
         return currentOrder;
     }
 
+    public void setCurrentOrder (Order o) {
+        this.currentOrder = o;
+    }
+
     public void setNextOrder() {
         Order placeholder = new Order();
         placeholder.incrementOrder();

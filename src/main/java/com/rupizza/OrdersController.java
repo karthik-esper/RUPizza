@@ -65,7 +65,9 @@ public class OrdersController {
         Store store = Store.getInstance();
         StoreOrders currentStore = Store.getInstance().getOrderHistory();
         Order currentOrder = Store.getInstance().getCurrentOrder();
-        currentStore.addOrder(currentOrder);
+        if (currentStore.getNumOrders() == 0) {
+            currentStore.addOrder(currentOrder);
+        }
         clearAll();
         Store.getInstance().setNextOrder();
         orderID.setText(String.valueOf(Store.getInstance().getOrderHistory().getNextOrder()));

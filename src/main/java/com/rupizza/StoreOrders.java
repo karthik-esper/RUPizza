@@ -14,6 +14,10 @@ public class StoreOrders {
         orderList.add(o);
     }
 
+    public void removeOrder (int index) {
+        orderList.remove(index);
+    }
+
     public int getNextOrder() {
         this.nextOrder++;
         return this.nextOrder;
