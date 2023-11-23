@@ -18,4 +18,12 @@ public class StoreOrders {
         this.nextOrder++;
         return this.nextOrder;
     }
+
+    public int getNumOrders () {
+        return this.orderList.size();
+    }
+
+    public Order getOrder (int index) {
+        return this.orderList.get(index);
+    }
 }

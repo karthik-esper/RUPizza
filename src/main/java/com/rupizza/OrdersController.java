@@ -31,10 +31,7 @@ public class OrdersController {
 
     protected void calculatePrice() {
         Order currentOrder = Store.getInstance().getCurrentOrder();
-        double price = 0;
-        for (int i = 0; i < currentOrder.getSize(); i++) {
-            price += currentOrder.getPrice(i);
-        }
+        double price = currentOrder.orderPrice();
         subtotalBox.setText(String.format("%.2f",price));
         salesTax.setText(String.format("%.2f",price * .0625));
         orderTotal.setText(String.format("%.2f",price * 1.0625));
@@ -65,13 +62,14 @@ public class OrdersController {
 
     @FXML
     protected void placeOrder () {
+        Store store = Store.getInstance();
         StoreOrders currentStore = Store.getInstance().getOrderHistory();
         Order currentOrder = Store.getInstance().getCurrentOrder();
         currentStore.addOrder(currentOrder);
         clearAll();
-        currentOrder.incrementOrder();
-        orderID.setText(String.valueOf(currentOrder.getOrderNumber()));
-        currentOrder.clearOrder();
+        Store.getInstance().setNextOrder();
+        orderID.setText(String.valueOf(Store.getInstance().getOrderHistory().getNextOrder()));
+        System.out.println(currentStore.getNumOrders());
 
     }
 

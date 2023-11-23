@@ -58,4 +58,12 @@ public class Order {
         this.orderItems = new ArrayList<Pizza>();
     }
 
+    public double orderPrice () {
+        double price = 0;
+        for (int i = 0; i < orderItems.size(); i++) {
+                price += orderItems.get(i).price();
+            }
+        return price;
+        }
+
 }

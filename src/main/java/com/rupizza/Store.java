@@ -18,8 +18,11 @@ public class Store {
         return currentOrder;
     }
 
-    public void setCurrentOrder(Order order) {
-        this.currentOrder = order;
+    public void setNextOrder() {
+        Order placeholder = new Order();
+        placeholder.incrementOrder();
+        this.orderHistory.addOrder(placeholder);
+        this.currentOrder = placeholder;
     }
 
     public StoreOrders getOrderHistory() {
