@@ -14,8 +14,7 @@ public class StoreOrders {
         orderList.add(o);
     }
 
-    public void removeOrder (int index) {
-        orderList.remove(index);
+    public void removeOrder (int index) {this.orderList.remove(index);
     }
 
     public int getNextOrder() {

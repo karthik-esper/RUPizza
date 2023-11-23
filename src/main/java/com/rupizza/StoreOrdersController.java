@@ -23,15 +23,21 @@ public class StoreOrdersController {
     @FXML
     public void initialize() {
         StoreOrders currentStore = Store.getInstance().getOrderHistory();
+        displayOptions();
+        orderList.setItems(FXCollections.observableArrayList());
+        pickerFunction();
+    }
+
+    @FXML
+    protected void displayOptions () {
+        StoreOrders currentStore = Store.getInstance().getOrderHistory();
         ArrayList<Integer> orders = new ArrayList<>();
         for (int i = 0; i < currentStore.getNumOrders(); i++) {
             if (currentStore.getOrder(i).getSize() != 0) {
-                orders.add(i, i + 1);
+                orders.add(i + 1);
             }
         }
         ordersAvailable.setItems(FXCollections.observableArrayList(orders));
-        orderList.setItems(FXCollections.observableArrayList());
-        pickerFunction();
     }
 
     @FXML
@@ -50,10 +56,13 @@ public class StoreOrdersController {
         if (ordersAvailable.getValue() != -1) {
             StoreOrders currentStore = Store.getInstance().getOrderHistory();
             int index = ordersAvailable.getValue();
-            currentStore.removeOrder(index-1);
-            orderList.getItems().remove(index-1);
+            currentStore.getOrder(index-1).clearOrder();
             orderTotal.setText("");
+            orderList.setItems(FXCollections.observableArrayList());
+            ordersAvailable.setItems(FXCollections.observableArrayList());
             ordersAvailable.getSelectionModel().clearSelection();
+            System.out.println("num orders is now " + currentStore.getNumOrders());
+            displayOptions();
         }
         else {
             showAlert("No Selection");
