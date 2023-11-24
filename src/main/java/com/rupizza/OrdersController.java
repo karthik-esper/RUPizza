@@ -71,8 +71,6 @@ public class OrdersController {
         clearAll();
         Store.getInstance().setNextOrder();
         orderID.setText(String.valueOf(Store.getInstance().getOrderHistory().getNextOrder()));
-        System.out.println(currentStore.getNumOrders());
-
     }
 
     @FXML

@@ -3,11 +3,8 @@ package com.rupizza;
 import javafx.collections.ObservableList;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.collections.FXCollections;
-import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.ArrayList;
@@ -108,10 +105,22 @@ public class SpecialtyController {
                 currentOrder.addToOrder(toMake);
             }
             else {
-                buttonError.setText("Size not selected!");
+                showAlert("No Size");
             }
         }
-        else {buttonError.setText("Please select a pizza type!");}
+        else {showAlert("No Type");}
+    }
+
+    protected void showAlert(String type) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Warning!");
+        if (type.equalsIgnoreCase("No Size")){
+            alert.setContentText("You have not selected a pizza size!");
+        }
+        else {
+            alert.setContentText("You have not selected a pizza type!");
+        }
+        alert.showAndWait();
     }
 
     @FXML

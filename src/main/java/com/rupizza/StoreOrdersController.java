@@ -61,7 +61,6 @@ public class StoreOrdersController {
             orderList.setItems(FXCollections.observableArrayList());
             ordersAvailable.setItems(FXCollections.observableArrayList());
             ordersAvailable.getSelectionModel().clearSelection();
-            System.out.println("num orders is now " + currentStore.getNumOrders());
             displayOptions();
         }
         else {
