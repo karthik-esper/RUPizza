@@ -26,7 +26,10 @@ public class OrdersController {
         Order currentOrder = Store.getInstance().getCurrentOrder();
         orderView.setItems(FXCollections.observableArrayList(currentOrder.printList()));
         calculatePrice();
-        orderID.setText(String.valueOf(currentOrder.getOrderNumber()));
+        if (Store.getInstance().getOrderHistory().getNextOrder() != 0) {
+            orderID.setText(String.valueOf(Store.getInstance().getOrderHistory().getNextOrder()));
+        }
+        else {orderID.setText("1");}
     }
 
     protected void calculatePrice() {

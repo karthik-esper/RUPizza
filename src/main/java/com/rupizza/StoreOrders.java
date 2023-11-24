@@ -18,7 +18,7 @@ public class StoreOrders {
     }
 
     public int getNextOrder() {
-        this.nextOrder++;
+        this.nextOrder = this.orderList.size();
         return this.nextOrder;
     }
 
