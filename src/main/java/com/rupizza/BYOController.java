@@ -15,32 +15,40 @@ import java.util.ArrayList;
 public class BYOController {
     private Label welcomeText;
     //BYOB vars
-    private Topping top1;
-    private Topping top2;
-    private Topping top3;
-    private Topping top4;
-    private Topping top5;
-    private Topping top6;
-    private Topping top7;
+    private ArrayList<Topping> toppers = new ArrayList<Topping>();
     private int toppingCounter;
     //FXML elements
-    private CheckBox sausage;
-    private CheckBox pepperoni;
-    private CheckBox beef;
-    private CheckBox ham;
-    private CheckBox shrimp;
-    private CheckBox squid;
-    private CheckBox crab_meat;
-    private CheckBox green_pepper;
-    private CheckBox onion;
-    private CheckBox mushroom;
-    private CheckBox black_olive;
-    private CheckBox pineapple;
-    private CheckBox jalapeno;
+    @FXML
+    private CheckBox sausage = new CheckBox();
+    @FXML
+    private CheckBox pepperoni = new CheckBox();
+    @FXML
+    private CheckBox beef = new CheckBox();
+    @FXML
+    private CheckBox ham = new CheckBox();
+    @FXML
+    private CheckBox shrimp = new CheckBox();
+    @FXML
+    private CheckBox squid = new CheckBox();
+    @FXML
+    private CheckBox crab_meat = new CheckBox();
+    @FXML
+    private CheckBox green_pepper = new CheckBox();
+    @FXML
+    private CheckBox onion = new CheckBox();
+    @FXML
+    private CheckBox mushroom = new CheckBox();
+    @FXML
+    private CheckBox black_olive = new CheckBox();
+    @FXML
+    private CheckBox pineapple = new CheckBox();
+    @FXML
+    private CheckBox jalapeno = new CheckBox();
+    @FXML
     private Button toppingSelect;
 
     @FXML
-    protected void createSpecialty() {
+    protected void createBuildYourOwnPizza() {
         try {
             // Load the FXML file
             FXMLLoader fxmlLoader = new FXMLLoader(ruPizzaMain.class.getResource("BuildYourOwn.fxml"));
@@ -61,61 +69,36 @@ public class BYOController {
 
     @FXML
     protected void topAssign() {
-        ArrayList<Topping> toppers= new ArrayList<Topping>();
-        if (toppingCounter <= 7) {
-            if (sausage.isSelected()) {
-                toppers.add(Topping.SAU);
+        sausage.setOnMouseClicked(e -> toppingSelect(Topping.SAU, sausage));
+        pepperoni.setOnMouseClicked(e -> toppingSelect(Topping.PE, pepperoni));
+        beef.setOnMouseClicked(e -> toppingSelect(Topping.BE, beef));
+        ham.setOnMouseClicked(e -> toppingSelect(Topping.HA, ham));
+        shrimp.setOnMouseClicked(e -> toppingSelect(Topping.SH, shrimp));
+        squid.setOnMouseClicked(e -> toppingSelect(Topping.SQ, squid));
+        crab_meat.setOnMouseClicked(e -> toppingSelect(Topping.CM, crab_meat));
+        green_pepper.setOnMouseClicked(e -> toppingSelect(Topping.GP, green_pepper));
+        onion.setOnMouseClicked(e -> toppingSelect(Topping.ON, onion));
+        mushroom.setOnMouseClicked(e -> toppingSelect(Topping.MU, mushroom));
+        black_olive.setOnMouseClicked(e -> toppingSelect(Topping.BO, black_olive));
+        pineapple.setOnMouseClicked(e -> toppingSelect(Topping.PI, pineapple));
+        jalapeno.setOnMouseClicked(e -> toppingSelect(Topping.JA, jalapeno));
+    }
+
+    protected void toppingSelect(Topping top, CheckBox cbox) {
+        final int MAX_TOPPING_SIZE = 7;
+        final int MIN_TOPPING_SIZE = 3;
+        if (cbox.isSelected()) {
+            if (toppingCounter < MAX_TOPPING_SIZE) {
+                toppers.add(top);
                 toppingCounter++;
+            } else {
+                cbox.setSelected(false);
+                System.out.println("Too many toppings! A maximum of 7 toppings is allowed.");
             }
-            if (pepperoni.isSelected()) {
-                toppers.add(Topping.PE);
-                toppingCounter++;
-            }
-            if (beef.isSelected()) {
-                toppers.add(Topping.BE);
-                toppingCounter++;
-            }
-            if (ham.isSelected()) {
-                toppers.add(Topping.BE);
-                toppingCounter++;
-            }
-            if (shrimp.isSelected()) {
-                toppers.add(Topping.HA);
-                toppingCounter++;
-            }
-            if (squid.isSelected()) {
-                toppers.add(Topping.SQ);
-                toppingCounter++;
-            }
-            if (crab_meat.isSelected()) {
-                toppers.add(Topping.CM);
-                toppingCounter++;
-            }
-            if (green_pepper.isSelected()) {
-                toppers.add(Topping.GP);
-                toppingCounter++;
-            }
-            if (onion.isSelected()) {
-                toppers.add(Topping.ON);
-                toppingCounter++;
-            }
-            if (mushroom.isSelected()) {
-                toppers.add(Topping.MU);
-                toppingCounter++;
-            }
-            if (black_olive.isSelected()) {
-                toppers.add(Topping.BO);
-                toppingCounter++;
-            }
-            if (pineapple.isSelected()) {
-                toppers.add(Topping.PI);
-                toppingCounter++;
-            }
-            if (jalapeno.isSelected()) {
-                toppers.add(Topping.JA);
-                toppingCounter++;
-            }
+        } else {
+            toppers.remove(top);
+            toppingCounter--;
         }
-        System.out.println(toppers.toString());
+        System.out.println(toppers);
     }
 }

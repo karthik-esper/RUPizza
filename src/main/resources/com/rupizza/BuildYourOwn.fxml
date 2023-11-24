@@ -30,14 +30,20 @@
       <VBox layoutX="195.0" layoutY="13.0" prefHeight="67.0" prefWidth="181.0">
          <children>
             <Label text="Sauce" />
-            <RadioButton mnemonicParsing="false" text="Tomato" />
-            <RadioButton layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="Alfredo" />
+            <RadioButton mnemonicParsing="false" text="Tomato">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Sauce" />
+               </toggleGroup></RadioButton>
+            <RadioButton layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="Alfredo" toggleGroup="$Sauce" />
             <VBox prefHeight="67.0" prefWidth="181.0">
                <children>
                   <Label text="Size" />
-                  <RadioButton mnemonicParsing="false" text="Small" />
-                  <RadioButton layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="Medium" />
-                  <RadioButton layoutX="10.0" layoutY="46.0" mnemonicParsing="false" text="Large" />
+                  <RadioButton mnemonicParsing="false" text="Small">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Size" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="Medium" toggleGroup="$Size" />
+                  <RadioButton layoutX="10.0" layoutY="46.0" mnemonicParsing="false" text="Large" toggleGroup="$Size" />
                </children>
             </VBox>
          </children>
