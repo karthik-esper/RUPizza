@@ -9,6 +9,11 @@ import javafx.collections.FXCollections;
 
 import java.util.ArrayList;
 
+/**
+ * Controller class for the current Order.
+ * Allows you to view all pizzas in the order, delete pizzas, and place the order,
+ * @author Karthik Gangireddy, Vineal Sunkara
+ */
 public class OrdersController {
     @FXML
     private ListView<String> orderView;
@@ -21,6 +26,11 @@ public class OrdersController {
     private TextField salesTax;
     @FXML
     private TextField orderTotal;
+
+    /**
+     * initalizes the list views and combo boxes for the order.
+     * Sets the order number based on the available numbers.
+     */
     @FXML
     public void initialize() {
         Order currentOrder = Store.getInstance().getCurrentOrder();
@@ -32,6 +42,10 @@ public class OrdersController {
         else {orderID.setText("1");}
     }
 
+    /**
+     * Calculates the number to put in the price box based on all the pizzas.
+     * Applies sales tax to get the total order.
+     */
     protected void calculatePrice() {
         Order currentOrder = Store.getInstance().getCurrentOrder();
         double price = currentOrder.orderPrice();
@@ -39,6 +53,10 @@ public class OrdersController {
         salesTax.setText(String.format("%.2f",price * .0625));
         orderTotal.setText(String.format("%.2f",price * 1.0625));
     }
+
+    /**
+     * Deletes a pizza from the order based on the one selected from the listview.
+     */
     @FXML
     protected void deletePizza () {
         if (orderView.getSelectionModel().getSelectedIndex() != -1) {
@@ -53,6 +71,10 @@ public class OrdersController {
         calculatePrice();
     }
 
+    /**
+     * Shows an alert based on the error provided,
+     * @param type string representation of the error causing the alert.
+     */
     protected void showAlert(String type) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Warning!");
@@ -65,6 +87,9 @@ public class OrdersController {
         alert.showAndWait();
     }
 
+    /**
+     * Places the order with the given total and pizzas.
+     */
     @FXML
     protected void placeOrder () {
         Store store = Store.getInstance();
@@ -82,6 +107,9 @@ public class OrdersController {
         orderID.setText(String.valueOf(Store.getInstance().getOrderHistory().getNextOrder()));
     }
 
+    /**
+     * Clears the boxes.
+     */
     @FXML
     protected void clearAll() {
         orderID.setText("");

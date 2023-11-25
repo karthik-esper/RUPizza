@@ -11,6 +11,11 @@ import java.util.ArrayList;
 
 import static com.rupizza.PizzaMaker.createPizza;
 
+/**
+ * Controller class adding specialty pizzas and seeing their price.
+ * Allows you to choose pizza size, type, and extras,
+ * @author Karthik Gangireddy, Vineal Sunkara
+ */
 public class SpecialtyController {
     @FXML
     private ListView<Topping> specialtyToppings;
@@ -50,7 +55,7 @@ public class SpecialtyController {
     }
 
     /**
-     * Initializes the event listener for the select pizza type button.
+     * Initializes the event listener for the select pizza type combo box.
      * Adjusts the listview of toppings based on selected pizza type.
      */
     @FXML
