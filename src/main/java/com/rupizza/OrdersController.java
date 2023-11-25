@@ -59,7 +59,9 @@ public class OrdersController {
         if (type.equalsIgnoreCase("No Selection")){
             alert.setContentText("You have not selected a pizza to remove.");
         }
-
+        if (type.equalsIgnoreCase("Empty Order")) {
+            alert.setContentText("There are no pizzas in this order. Add something.");
+        }
         alert.showAndWait();
     }
 
@@ -68,6 +70,10 @@ public class OrdersController {
         Store store = Store.getInstance();
         StoreOrders currentStore = Store.getInstance().getOrderHistory();
         Order currentOrder = Store.getInstance().getCurrentOrder();
+        if (currentOrder.getOrderItems().isEmpty()) {
+            showAlert("Empty Order");
+            return;
+        }
         if (currentStore.getNumOrders() == 0) {
             currentStore.addOrder(currentOrder);
         }
