@@ -12,6 +12,12 @@ import java.util.ArrayList;
 
 import static com.rupizza.PizzaMaker.createPizza;
 
+/**
+ * Controller class for the Store order history.
+ * Allows you to view any selected order as well as delete orders.
+ * Allows you to export store orders.
+ * @author Karthik Gangireddy, Vineal Sunkara
+ */
 public class StoreOrdersController {
     @FXML
     private ListView<String> orderList;
@@ -20,6 +26,10 @@ public class StoreOrdersController {
     private TextField orderTotal;
     @FXML
     private ComboBox<Integer> ordersAvailable;
+
+    /**
+     * initializes the scene with set options for the comboboxes and listviews.
+     */
     @FXML
     public void initialize() {
         StoreOrders currentStore = Store.getInstance().getOrderHistory();
@@ -28,6 +38,9 @@ public class StoreOrdersController {
         pickerFunction();
     }
 
+    /**
+     * Sets up the combobox with the possible orders to choose from when viewing orders.
+     */
     @FXML
     protected void displayOptions () {
         StoreOrders currentStore = Store.getInstance().getOrderHistory();
@@ -40,6 +53,10 @@ public class StoreOrdersController {
         ordersAvailable.setItems(FXCollections.observableArrayList(orders));
     }
 
+    /**
+     * Initializes the event listener for the select order combo box.
+     * Provides the option to browse placed orders and view each order's items.
+     */
     @FXML
     protected void pickerFunction () {
         ordersAvailable.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -51,28 +68,42 @@ public class StoreOrdersController {
         });
     }
 
+    /**
+     * function for the button to delete orders.
+     * Checks to make sure the order is selected before deleting.
+     */
     @FXML
     protected void deleteOrder () {
-        if (ordersAvailable.getValue() != -1) {
-            StoreOrders currentStore = Store.getInstance().getOrderHistory();
-            int index = ordersAvailable.getValue();
-            currentStore.getOrder(index-1).clearOrder();
-            orderTotal.setText("");
-            orderList.setItems(FXCollections.observableArrayList());
-            ordersAvailable.setItems(FXCollections.observableArrayList());
-            ordersAvailable.getSelectionModel().clearSelection();
-            System.out.println("num orders is now " + currentStore.getNumOrders());
-            displayOptions();
+        if (ordersAvailable.getSelectionModel().getSelectedItem() != null) {
+            if (ordersAvailable.getValue() != -1) {
+                StoreOrders currentStore = Store.getInstance().getOrderHistory();
+                int index = ordersAvailable.getValue();
+                currentStore.getOrder(index - 1).clearOrder();
+                orderTotal.setText("");
+                orderList.setItems(FXCollections.observableArrayList());
+                ordersAvailable.setItems(FXCollections.observableArrayList());
+                ordersAvailable.getSelectionModel().clearSelection();
+                displayOptions();
+            } else {
+                showAlert("No Selection");
+            }
         }
         else {
-            showAlert("No Selection");
+            showAlert("No Item");
         }
     }
 
+    /**
+     * Shows alerts based on errors.
+     * @param type type of the error in String form.
+     */
     protected void showAlert(String type) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Warning!");
         if (type.equalsIgnoreCase("No Selection")){
+            alert.setContentText("You have not selected an order to remove.");
+        }
+        if (type.equalsIgnoreCase("No Item")){
             alert.setContentText("You have not selected an order to remove.");
         }
 

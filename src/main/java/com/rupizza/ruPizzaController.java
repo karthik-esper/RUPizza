@@ -9,22 +9,25 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the main menu.
+ * Contains buttons that open scenes run by the other controllers.
+ * @author Karthik Gangireddy, Vineal Sunkara
+ */
 public class ruPizzaController {
-    @FXML
-    private Label welcomeText;
+    private Store ruPizza = Store.getInstance(); //instance of store
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-
-    Store ruPizza = Store.getInstance();
-
+    /**
+     * Initializes instances for the singleton.
+     */
     public void initialize () {
         Order currentOrder = ruPizza.getCurrentOrder();
         StoreOrders storeOrders = ruPizza.getOrderHistory();
     }
 
+    /**
+     * Creates the scene for the controller that creates specialty pizzas.
+     */
     @FXML
     protected void createSpecialty () {
         try {
@@ -44,6 +47,10 @@ public class ruPizzaController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Creates the scene for the controller that creates customizable pizzas.
+     */
     @FXML
     protected void createBuildYourOwn() {
         try {
@@ -64,6 +71,9 @@ public class ruPizzaController {
         }
     }
 
+    /**
+     * Creates the scene for the controller that can view and delete items from orders.
+     */
     @FXML
     protected void viewCurrentOrder () {
         try {
@@ -84,6 +94,9 @@ public class ruPizzaController {
         }
     }
 
+    /**
+     * Creates the scene for the controller that can view order history and delete orders.
+     */
     @FXML
     protected void viewOrderHistory () {
         try {
