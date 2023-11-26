@@ -8,15 +8,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+
+import static com.rupizza.PizzaMaker.createPizza;
 
 public class BYOController {
     private Label welcomeText;
     //BYOB vars
     private ArrayList<Topping> toppers = new ArrayList<Topping>();
     private int toppingCounter;
+    private Sauce sauce;
+    private Size size;
     //FXML elements
     @FXML
     private CheckBox sausage = new CheckBox();
@@ -45,7 +50,19 @@ public class BYOController {
     @FXML
     private CheckBox jalapeno = new CheckBox();
     @FXML
-    private Button toppingSelect;
+    private RadioButton tomato;
+    @FXML
+    private RadioButton alfredo;
+    @FXML
+    private RadioButton small;
+    @FXML
+    private RadioButton medium;
+    @FXML
+    private RadioButton large;
+    @FXML
+    private RadioButton exSauce;
+    @FXML
+    private RadioButton exCheese;
 
     @FXML
     protected void createBuildYourOwnPizza() {
@@ -101,4 +118,41 @@ public class BYOController {
         }
         System.out.println(toppers);
     }
+    @FXML
+    protected void sauceSelect() {
+        if (tomato.isSelected() == true) {
+            sauce = Sauce.TO;
+        }
+        if (alfredo.isSelected() == true) {
+            sauce = Sauce.AL;
+        }
+        System.out.println(sauce.toString());
+    }
+
+    @FXML
+    protected void sizeSelect() {
+        if (small.isSelected() == true) {
+            size = Size.S;
+        }
+        if (medium.isSelected() == true) {
+            size = Size.M;
+        }
+        if (large.isSelected() == true) {
+            size = Size.L;
+        }
+        System.out.println(size);
+    }
+
+    @FXML
+    protected void pizzaButton() {
+        Pizza toMake = createPizza("byop");
+        toMake.toppings = toppers;
+        toMake.sauce = sauce;
+        toMake.size = size;
+        if (exCheese.isSelected() == true) {toMake.extraCheese = true;}
+        if (exSauce.isSelected() == true) {toMake.extraSauce = true;}
+        System.out.println(toMake.toString());
+
+    }
+
 }

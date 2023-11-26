@@ -13,6 +13,8 @@ public class PizzaMaker {
                 return new Seafood();
             case "pepperoni":
                 return new Pepperoni();
+            case "byop":
+                return new BuildYourOwnPizza();
             default:
                 return null;
         }
