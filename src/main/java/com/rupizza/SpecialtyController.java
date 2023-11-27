@@ -80,6 +80,8 @@ public class SpecialtyController {
                 specialtyToppings.setItems(toppingList);
                 Pizza temp = createPizza(newValue);
                 sizeChoices.getSelectionModel().clearSelection();
+                sauceSetter.setSelected(false);
+                cheeseSetter.setSelected(false);
                 priceBox.setText("Price: " + String.valueOf(temp.price()));
             }
         });

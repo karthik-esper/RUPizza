@@ -15,6 +15,7 @@ import java.io.File;
 public class StoreOrders {
     private ArrayList<Order> orderList; //arraylist with every order in the store's history
     private static int nextOrder; //next available order
+    private static final double njTax = 0.0625; //Sales tax offset
 
     /**
      * Default constructor for the Store orders.
@@ -79,7 +80,8 @@ public class StoreOrders {
                 for (int j = 0; j < orders.size(); j++) {
                     fileWriter.write(orders.get(j) + "\n");
                 }
-                String value = String.format("%.2f", orderList.get(i).orderPrice());
+                Double price = orderList.get(i).orderPrice();
+                String value = String.format("%.2f", price + (price * njTax));
                 fileWriter.write("Total Price: " + value + "\n");
             }
         }
