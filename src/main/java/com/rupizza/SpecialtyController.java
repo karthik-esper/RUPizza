@@ -104,6 +104,12 @@ public class SpecialtyController {
             }
         });
     }
+
+    /**
+     * Updates price of main pizza based on selected items.
+     * @param pizza pizza to update sauce or cheese for.
+     * @return pizza with updated properties.
+     */
     @FXML
     protected Pizza updatePrice(Pizza pizza){
         Pizza temp = createPizza(specialtyChoices.getValue());
@@ -133,9 +139,14 @@ public class SpecialtyController {
             }
         }
         else {showAlert("Insufficient");
+            sauceSetter.setSelected(false);
+            cheeseSetter.setSelected(false);
         return null;}
     }
 
+    /**
+     * Updates price based on selected radioButtons for sauce and cheese.
+     */
     @FXML
     protected void updatePrice() {
         if (sizeChoices.getValue() != null && specialtyChoices.getValue() != null) {
@@ -164,6 +175,8 @@ public class SpecialtyController {
             }
         }
         else {showAlert("Insufficient");
+            sauceSetter.setSelected(false);
+            cheeseSetter.setSelected(false);
         }
     }
 
