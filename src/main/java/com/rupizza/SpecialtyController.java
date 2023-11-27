@@ -104,6 +104,68 @@ public class SpecialtyController {
             }
         });
     }
+    @FXML
+    protected Pizza updatePrice(Pizza pizza){
+        Pizza temp = createPizza(specialtyChoices.getValue());
+        if (temp != null && specialtyChoices.getValue() != null) {
+            temp.setSize(Size.valueOf(sizeChoices.getValue().substring(0,1).toUpperCase()));
+            {
+                if (sauceSetter.isSelected()) {
+                    temp.setExtraSauce(true);
+                    Double price = temp.price();
+                    priceBox.setText("Price: " + String.format("%.2f", price));
+                }
+                if (!sauceSetter.isSelected()) {
+                    temp.setExtraSauce(false);
+                    Double price = temp.price();
+                    priceBox.setText("Price: " + String.format("%.2f", price));
+                }
+                if (cheeseSetter.isSelected()) {
+                    temp.setExtraCheese(true);
+                    Double price = temp.price();
+                    priceBox.setText("Price: " + String.format("%.2f", price));
+                } else {
+                temp.setExtraCheese(false);
+                Double price = temp.price();
+                priceBox.setText("Price: " + String.format("%.2f", price));
+            }
+                return temp;
+            }
+        }
+        else {showAlert("Insufficient");
+        return null;}
+    }
+
+    @FXML
+    protected void updatePrice() {
+        if (sizeChoices.getValue() != null && specialtyChoices.getValue() != null) {
+            Pizza temp = createPizza(specialtyChoices.getValue());
+            temp.setSize(Size.valueOf(sizeChoices.getValue().substring(0,1).toUpperCase()));
+            {
+                if (sauceSetter.isSelected()) {
+                    temp.setExtraSauce(true);
+                    Double price = temp.price();
+                    priceBox.setText("Price: " + String.format("%.2f", price));
+                }
+                if (!sauceSetter.isSelected()) {
+                    temp.setExtraSauce(false);
+                    Double price = temp.price();
+                    priceBox.setText("Price: " + String.format("%.2f", price));
+                }
+                if (cheeseSetter.isSelected()) {
+                    temp.setExtraCheese(true);
+                    Double price = temp.price();
+                    priceBox.setText("Price: " + String.format("%.2f", price));
+                } else {
+                    temp.setExtraCheese(false);
+                    Double price = temp.price();
+                    priceBox.setText("Price: " + String.format("%.2f", price));
+                }
+            }
+        }
+        else {showAlert("Insufficient");
+        }
+    }
 
     /**
      * Creates the pizza after checking multiple parameters.
@@ -120,9 +182,10 @@ public class SpecialtyController {
                 if (cheeseSetter.isSelected()) {toMake.setExtraCheese(true);}
                 buttonError.setText("Pizza was created!");
                 System.out.println(toMake.toString());
-                clearAll();
                 Order currentOrder = Store.getInstance().getCurrentOrder();
+                toMake = updatePrice(toMake);
                 currentOrder.addToOrder(toMake);
+                clearAll();
             }
             else {
                 showAlert("No Size");
@@ -140,6 +203,9 @@ public class SpecialtyController {
         alert.setTitle("Warning!");
         if (type.equalsIgnoreCase("No Size")){
             alert.setContentText("You have not selected a pizza size!");
+        }
+        if (type.equalsIgnoreCase("Insufficient")) {
+            alert.setContentText("Size/Type is null");
         }
         else {
             alert.setContentText("You have not selected a pizza type!");

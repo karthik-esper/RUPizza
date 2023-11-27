@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * @author Karthik Gangireddy, Vineal Sunkara
  */
 public class OrdersController {
+    private static final double njTax = 0.0625; //Sales tax offset
     @FXML
     private ListView<String> orderView;
     private ObservableList<String> orderPizzas;
@@ -50,8 +51,8 @@ public class OrdersController {
         Order currentOrder = Store.getInstance().getCurrentOrder();
         double price = currentOrder.orderPrice();
         subtotalBox.setText(String.format("%.2f",price));
-        salesTax.setText(String.format("%.2f",price * .0625));
-        orderTotal.setText(String.format("%.2f",price * 1.0625));
+        salesTax.setText(String.format("%.2f",price * njTax));
+        orderTotal.setText(String.format("%.2f",price + (price *njTax)));
     }
 
     /**
