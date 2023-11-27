@@ -77,14 +77,21 @@ public class OrdersController {
      */
     protected void showAlert(String type) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Warning!");
         if (type.equalsIgnoreCase("No Selection")){
+            alert.setTitle("Warning!");
             alert.setContentText("You have not selected a pizza to remove.");
+            alert.showAndWait();
         }
         if (type.equalsIgnoreCase("Empty Order")) {
+            alert.setTitle("Warning!");
             alert.setContentText("There are no pizzas in this order. Add something.");
+            alert.showAndWait();
         }
-        alert.showAndWait();
+        if (type.equalsIgnoreCase("Order Placed")) {
+            Alert success = new Alert(Alert.AlertType.CONFIRMATION);
+            success.setContentText("Order Placed successfully!");
+            success.showAndWait();
+        }
     }
 
     /**
@@ -105,6 +112,7 @@ public class OrdersController {
         clearAll();
         Store.getInstance().setNextOrder();
         orderID.setText(String.valueOf(Store.getInstance().getOrderHistory().getNextOrder()));
+        showAlert("Order Placed");
     }
 
     /**
