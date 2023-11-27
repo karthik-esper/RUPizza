@@ -169,7 +169,6 @@ public class BYOController {
     }
 
     protected void pricePrint() {
-        // Determine the base price based on the pizza size
         switch (size) {
             case S:
                 currentPrice = SMALL_PRICE;
@@ -182,12 +181,10 @@ public class BYOController {
                 break;
         }
 
-        // Add extra cost for additional toppings if they exceed the minimum size
         if (toppers.size() > MIN_TOPPING_SIZE) {
             currentPrice += ADD_TOP_PRICE * (toppers.size() - MIN_TOPPING_SIZE);
         }
 
-        // Add extra cost for sauce and cheese if selected
         if (exCheese.isSelected()) {
             currentPrice += EXTRAS_PRICE;
         }
@@ -195,8 +192,7 @@ public class BYOController {
         if (exSauce.isSelected()) {
             currentPrice += EXTRAS_PRICE;
         }
-
-        // Set the final price
+        
         price.setText("Price: " + currentPrice);
     }
 

@@ -9,6 +9,7 @@ public class Deluxe extends Pizza {
     private static final double BASE_PRICE = 14.99; // Base price of the pizza
     private static final double ADD_MEDIUM = 2.00; // extra charge for medium size
     private static final double ADD_LARGE = 4.00; // extra charge for large size
+    private static final double EXTRA_CHARGE = 1.00; //charge for selecting extra sauce or cheese
 
     /**
      * Default constructor for a deluxe pizza.
@@ -30,6 +31,12 @@ public class Deluxe extends Pizza {
             price += ADD_MEDIUM;
         } else if (this.size.getPizzaSize().equals("Large")) {
             price += ADD_LARGE;
+        }
+        if (getExtraCheese()) {
+            price += EXTRA_CHARGE;
+        }
+        if (getExtraSauce()) {
+            price += EXTRA_CHARGE;
         }
         return price;
     }
