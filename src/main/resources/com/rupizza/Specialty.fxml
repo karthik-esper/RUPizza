@@ -9,7 +9,7 @@
     <children>
         <VBox layoutX="14.0" layoutY="14.0" prefHeight="375.0" prefWidth="217.0">
             <children>
-                <ImageView fx:id = "pizzaPic" fitHeight="131.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="false"/>
+                <ImageView fx:id="pizzaPic" fitHeight="131.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="false" />
             <ListView fx:id="specialtyToppings" prefHeight="200.0" prefWidth="200.0" />
             <Label fx:id="priceBox" prefHeight="28.0" prefWidth="129.0" text="Price:">
                <font>
@@ -24,8 +24,8 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <RadioButton fx:id="sauceSetter" layoutX="242.0" layoutY="260.0" mnemonicParsing="false" text="Extra Sauce" />
-      <RadioButton fx:id="cheeseSetter" layoutX="242.0" layoutY="283.0" mnemonicParsing="false" text="Extra Cheese" />
+      <RadioButton fx:id="sauceSetter" layoutX="242.0" layoutY="260.0" mnemonicParsing="false" onAction="#updatePrice" text="Extra Sauce" />
+      <RadioButton fx:id="cheeseSetter" layoutX="242.0" layoutY="283.0" mnemonicParsing="false" onAction="#updatePrice" text="Extra Cheese" />
       <Label layoutX="236.0" layoutY="6.0" prefHeight="26.0" prefWidth="82.0" text="Select Type:">
          <font>
             <Font name="System Bold" size="14.0" />

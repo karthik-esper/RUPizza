@@ -24,6 +24,7 @@ import static com.rupizza.PizzaMaker.createPizza;
  * @author Karthik Gangireddy, Vineal Sunkara
  */
 public class StoreOrdersController {
+    private static final double njTax = 0.0625; //Sales tax offset
     @FXML
     private ListView<String> orderList;
     private ObservableList<String> orderPizzas;
@@ -68,7 +69,8 @@ public class StoreOrdersController {
             if (newValue != null) {
                 Order orderToDisplay = Store.getInstance().getOrderHistory().getOrder(newValue-1);
                 orderList.setItems(FXCollections.observableArrayList(orderToDisplay.printList()));
-                orderTotal.setText(String.format("%.2f",orderToDisplay.orderPrice()));
+                double bill = orderToDisplay.orderPrice();
+                orderTotal.setText(String.format("%.2f", bill + (bill * njTax)));
             }
         });
     }
