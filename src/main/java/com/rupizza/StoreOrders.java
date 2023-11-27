@@ -65,6 +65,12 @@ public class StoreOrders {
         return this.orderList.get(index);
     }
 
+    /**
+     * Writes the arraylist to a text file in order to export store orders.
+     * @param fileWriter fileWriter from the controller.
+     * @param file file to write to.
+     * @throws IOException throws exception if invalid input or output.
+     */
     public void export(FileWriter fileWriter, File file) throws IOException {
         for (int i = 0; i < orderList.size(); i++) {
             if (orderList.get(i).getSize() != 0) {

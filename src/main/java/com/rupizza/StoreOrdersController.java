@@ -115,6 +115,10 @@ public class StoreOrdersController {
         alert.showAndWait();
     }
 
+    /**
+     * Saves the arraylist for the order history as a text file.
+     * Uses the store orders export() method.
+     */
     @FXML
     protected void saveAsFile() {
         FileChooser fileChooser = new FileChooser();
