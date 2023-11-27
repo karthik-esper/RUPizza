@@ -16,12 +16,22 @@ import java.util.ArrayList;
 import static com.rupizza.PizzaMaker.createPizza;
 
 public class BYOController {
-    private Label welcomeText;
     //BYOB vars
     private ArrayList<Topping> toppers = new ArrayList<Topping>();
     private int toppingCounter;
     private Sauce sauce;
-    private Size size;
+    private Size size = Size.S;
+    private boolean extraCheese;
+    private boolean extraSauce;
+    private final int MAX_TOPPING_SIZE = 7;
+    private final int MIN_TOPPING_SIZE = 3;
+    private final double SMALL_PRICE = 8.99;
+    private final double MED_PRICE = 10.99;
+    private final double LG_PRICE = 12.99;
+    private final double ADD_TOP_PRICE = 1.49;
+    private final double TOPPERS_SIZE_MATCHER = -3; //used to make toppers.size() match number of additional toppings past 3
+    private final double EXTRAS_PRICE = 1.00;
+    private double currentPrice = SMALL_PRICE;
     //FXML elements
     @FXML
     private CheckBox sausage = new CheckBox();
@@ -63,6 +73,8 @@ public class BYOController {
     private RadioButton exSauce;
     @FXML
     private RadioButton exCheese;
+    @FXML
+    private Label price;
 
     @FXML
     protected void createBuildYourOwnPizza() {
@@ -102,8 +114,7 @@ public class BYOController {
     }
 
     protected void toppingSelect(Topping top, CheckBox cbox) {
-        final int MAX_TOPPING_SIZE = 7;
-        final int MIN_TOPPING_SIZE = 3;
+
         if (cbox.isSelected()) {
             if (toppingCounter < MAX_TOPPING_SIZE) {
                 toppers.add(top);
@@ -117,6 +128,7 @@ public class BYOController {
             toppingCounter--;
         }
         System.out.println(toppers);
+        pricePrint();
     }
     @FXML
     protected void sauceSelect() {
@@ -126,6 +138,7 @@ public class BYOController {
         if (alfredo.isSelected() == true) {
             sauce = Sauce.AL;
         }
+
         System.out.println(sauce.toString());
     }
 
@@ -140,7 +153,51 @@ public class BYOController {
         if (large.isSelected() == true) {
             size = Size.L;
         }
+        pricePrint();
         System.out.println(size);
+    }
+
+    @FXML
+    protected void extraSelect() {
+        if (exCheese.isSelected()) {
+            extraCheese = true;
+        }
+        else if (exSauce.isSelected()) {
+            extraSauce = true;
+        }
+        pricePrint();
+    }
+
+    protected void pricePrint() {
+        // Determine the base price based on the pizza size
+        switch (size) {
+            case S:
+                currentPrice = SMALL_PRICE;
+                break;
+            case M:
+                currentPrice = MED_PRICE;
+                break;
+            case L:
+                currentPrice = LG_PRICE;
+                break;
+        }
+
+        // Add extra cost for additional toppings if they exceed the minimum size
+        if (toppers.size() > MIN_TOPPING_SIZE) {
+            currentPrice += ADD_TOP_PRICE * (toppers.size() - MIN_TOPPING_SIZE);
+        }
+
+        // Add extra cost for sauce and cheese if selected
+        if (exCheese.isSelected()) {
+            currentPrice += EXTRAS_PRICE;
+        }
+
+        if (exSauce.isSelected()) {
+            currentPrice += EXTRAS_PRICE;
+        }
+
+        // Set the final price
+        price.setText("Price: " + currentPrice);
     }
 
     @FXML
@@ -149,10 +206,11 @@ public class BYOController {
         toMake.toppings = toppers;
         toMake.sauce = sauce;
         toMake.size = size;
-        if (exCheese.isSelected() == true) {toMake.extraCheese = true;}
-        if (exSauce.isSelected() == true) {toMake.extraSauce = true;}
+        if (exCheese.isSelected() == true) {toMake.setExtraCheese(true);}
+        if (exSauce.isSelected() == true) {toMake.setExtraSauce(true);}
         System.out.println(toMake.toString());
-
+        Order currentOrder = Store.getInstance().getCurrentOrder();
+        currentOrder.addToOrder(toMake);
     }
 
 }

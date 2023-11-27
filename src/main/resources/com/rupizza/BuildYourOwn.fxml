@@ -41,8 +41,8 @@
                   <RadioButton fx:id="medium" layoutX="10.0" layoutY="28.0" mnemonicParsing="false" onAction="#sizeSelect" text="Medium" toggleGroup="$Size" />
                   <RadioButton fx:id="large" layoutX="10.0" layoutY="46.0" mnemonicParsing="false" onAction="#sizeSelect" text="Large" toggleGroup="$Size" />
                   <Label text="Extras" />
-                  <RadioButton fx:id="exSauce" mnemonicParsing="false" text="Extra Sauce" />
-                  <RadioButton fx:id="exCheese" mnemonicParsing="false" text="Extra Cheese" />
+                  <RadioButton fx:id="exSauce" mnemonicParsing="false" onAction="#extraSelect" text="Extra Sauce" />
+                  <RadioButton fx:id="exCheese" mnemonicParsing="false" onAction="#extraSelect" text="Extra Cheese" />
                </children>
             </VBox>
          </children>
@@ -53,5 +53,6 @@
             <Font size="25.0" />
          </font>
       </Label>
+      <Label fx:id="price" layoutX="197.0" layoutY="287.0" />
    </children>
 </AnchorPane>

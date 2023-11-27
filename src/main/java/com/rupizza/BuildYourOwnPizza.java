@@ -7,11 +7,12 @@ import java.util.ArrayList;
  * @author Karthik Gangireddy, Vineal Sunkara
  */
 public class BuildYourOwnPizza extends Pizza {
-    private static final double BASE_PRICE = 14.99; // Base price of the pizza
+    private static final double BASE_PRICE = 8.99; // Base price of the pizza
     private static final double ADD_MEDIUM = 2.00; // extra charge for medium size
     private static final double ADD_LARGE = 4.00; // extra charge for large size
     private static final double ADD_MORE_TOPPINGS = 1.49; //extra charge for additional toppings past 3
-    private static final int TOPPING_START = 4; //starting place in the toppings ArrayList since the first 3 are included in price
+    private static final int TOPPING_START = 3; //starting place in the toppings ArrayList since the first 3 are included in price
+    private static final double EXTRA_CHARGE = 1.00; //charge for selecting extra sauce or cheese
 
     /**
      * Default Constructor for building your own pizza
@@ -32,6 +33,12 @@ public class BuildYourOwnPizza extends Pizza {
         }
         for (int i = TOPPING_START; i < toppings.size(); i++) {
             price += ADD_MORE_TOPPINGS;
+        }
+        if (getExtraCheese()) {
+            price += EXTRA_CHARGE;
+        }
+        if (getExtraSauce()) {
+            price += EXTRA_CHARGE;
         }
         return price;
     }
@@ -82,7 +89,7 @@ public class BuildYourOwnPizza extends Pizza {
      */
     @Override
     public String toString() {
-        String pizza = "[Deluxe]";
+        String pizza = "[Build Your Own Pizza]";
         for (int i = 0; i < this.toppings.size(); i++) {
             pizza += " " + toppings.get(i).toString();
         }

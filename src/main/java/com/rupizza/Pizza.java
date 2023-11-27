@@ -16,6 +16,8 @@ public abstract class Pizza {
     public abstract void setSize(Size size); //setter method
     public abstract void setExtraSauce(boolean extraSauce); //setter method
     public abstract void setExtraCheese(boolean extraCheese); //setter method
+    public boolean getExtraSauce() {return this.extraSauce;}
+    public boolean getExtraCheese() {return this.extraCheese;}
     public abstract String toString();
 
 }
