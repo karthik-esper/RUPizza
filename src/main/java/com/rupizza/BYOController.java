@@ -1,6 +1,7 @@
 package com.rupizza;
 
 import javafx.beans.Observable;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
+import javafx.scene.control.*;
 
 import java.util.ArrayList;
 
@@ -29,10 +31,11 @@ public class BYOController {
     private final double MED_PRICE = 10.99;
     private final double LG_PRICE = 12.99;
     private final double ADD_TOP_PRICE = 1.49;
-    private final double TOPPERS_SIZE_MATCHER = -3; //used to make toppers.size() match number of additional toppings past 3
     private final double EXTRAS_PRICE = 1.00;
     private double currentPrice = SMALL_PRICE;
-    //FXML elements
+    //FXML elements\
+    @FXML
+    private ComboBox sizeDropDown = new ComboBox();
     @FXML
     private CheckBox sausage = new CheckBox();
     @FXML
@@ -77,26 +80,6 @@ public class BYOController {
     private Label price;
 
     @FXML
-    protected void createBuildYourOwnPizza() {
-        try {
-            // Load the FXML file
-            FXMLLoader fxmlLoader = new FXMLLoader(ruPizzaMain.class.getResource("BuildYourOwn.fxml"));
-            Scene specialtyScene = new Scene(fxmlLoader.load(), 400, 400);
-
-            // Create a new stage (window)
-            Stage stage = new Stage();
-            stage.setTitle("Build your own Pizza!");
-            stage.setScene(specialtyScene);
-
-            // Show the new stage
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
     protected void topAssign() {
         sausage.setOnMouseClicked(e -> toppingSelect(Topping.SAU, sausage));
         pepperoni.setOnMouseClicked(e -> toppingSelect(Topping.PE, pepperoni));
@@ -114,14 +97,13 @@ public class BYOController {
     }
 
     protected void toppingSelect(Topping top, CheckBox cbox) {
-
         if (cbox.isSelected()) {
             if (toppingCounter < MAX_TOPPING_SIZE) {
                 toppers.add(top);
                 toppingCounter++;
             } else {
                 cbox.setSelected(false);
-                System.out.println("Too many toppings! A maximum of 7 toppings is allowed.");
+                showAlert("Too many toppings! The maximum number of selectable toppings is 7.");
             }
         } else {
             toppers.remove(top);
@@ -129,6 +111,17 @@ public class BYOController {
         }
         System.out.println(toppers);
         pricePrint();
+    }
+
+    /**
+     * Shows alerts based on errors.
+     * @param type type of the error in String form.
+     */
+    protected void showAlert(String type) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Warning!");
+        alert.setContentText(type);
+        alert.showAndWait();
     }
     @FXML
     protected void sauceSelect() {
@@ -192,12 +185,16 @@ public class BYOController {
         if (exSauce.isSelected()) {
             currentPrice += EXTRAS_PRICE;
         }
-        
+
         price.setText("Price: " + currentPrice);
     }
 
     @FXML
     protected void pizzaButton() {
+        if ((toppers.size() < 3) || sauce == null) {
+            showAlert("Please select at least three toppings and a sauce.");
+            return;
+        }
         Pizza toMake = createPizza("byop");
         toMake.toppings = toppers;
         toMake.sauce = sauce;
