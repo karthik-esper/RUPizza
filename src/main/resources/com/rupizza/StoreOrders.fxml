@@ -20,7 +20,7 @@
         <TextField fx:id="orderTotal" editable="false" layoutX="412.0" layoutY="47.0" prefHeight="26.0" prefWidth="100.0" />
         <Label layoutX="338.0" layoutY="47.0" prefHeight="26.0" prefWidth="74.0" text="Order Total:" />
         <Button layoutX="78.0" layoutY="347.0" mnemonicParsing="false" onAction="#deleteOrder" prefHeight="26.0" prefWidth="129.0" text="Delete Order" />
-        <Button fx:id="exportOrders" layoutX="375.0" layoutY="347.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Export Orders" />
+        <Button fx:id="exportOrders" layoutX="375.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveAsFile" prefHeight="26.0" prefWidth="130.0" text="Export Orders" />
       <ComboBox fx:id="ordersAvailable" layoutX="112.0" layoutY="48.0" prefWidth="150.0" />
     </children>
 

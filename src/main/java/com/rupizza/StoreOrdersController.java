@@ -7,8 +7,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+
 
 import static com.rupizza.PizzaMaker.createPizza;
 
@@ -109,4 +114,27 @@ public class StoreOrdersController {
 
         alert.showAndWait();
     }
-}
+
+    @FXML
+    protected void saveAsFile() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select file to save to");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("All Files", "*.")
+        );
+
+        File file = fileChooser.showSaveDialog(null);
+
+        if (file != null) {
+            try (FileWriter fileWriter = new FileWriter(file)) {
+                Store.getInstance().getOrderHistory().export(fileWriter, file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    }
+

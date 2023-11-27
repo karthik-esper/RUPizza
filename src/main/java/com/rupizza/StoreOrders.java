@@ -1,6 +1,11 @@
 package com.rupizza;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.io.File;
+
 
 /**
  * A class that represents the entire order history of the store.
@@ -9,7 +14,7 @@ import java.util.ArrayList;
  */
 public class StoreOrders {
     private ArrayList<Order> orderList; //arraylist with every order in the store's history
-    private int nextOrder; //next available order
+    private static int nextOrder; //next available order
 
     /**
      * Default constructor for the Store orders.
@@ -58,5 +63,19 @@ public class StoreOrders {
      */
     public Order getOrder (int index) {
         return this.orderList.get(index);
+    }
+
+    public void export(FileWriter fileWriter, File file) throws IOException {
+        for (int i = 0; i < orderList.size(); i++) {
+            if (orderList.get(i).getSize() != 0) {
+                fileWriter.write("Order Number: " + String.valueOf(i+1) + "\n");
+                ArrayList<String> orders = orderList.get(i).printList();
+                for (int j = 0; j < orders.size(); j++) {
+                    fileWriter.write(orders.get(j) + "\n");
+                }
+                String value = String.format("%.2f", orderList.get(i).orderPrice());
+                fileWriter.write("Total Price: " + value + "\n");
+            }
+        }
     }
 }
