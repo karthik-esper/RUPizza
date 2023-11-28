@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rupizza.BYOController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rupizza.BYOController">
    <children>
-      <VBox layoutX="14.0" layoutY="85.0" prefHeight="257.0" prefWidth="181.0">
-         <children>
-            <Label text="Toppings" />
-            <CheckBox fx:id="sausage" mnemonicParsing="false" onAction="#topAssign" text="Sausage" />
-            <CheckBox fx:id="pepperoni" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onAction="#topAssign" text="Pepperoni" />
-            <CheckBox fx:id="beef" layoutX="10.0" layoutY="168.0" mnemonicParsing="false" onAction="#topAssign" text="Beef" />
-            <CheckBox fx:id="ham" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Ham" />
-            <CheckBox fx:id="shrimp" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Shrimp" />
-            <CheckBox fx:id="squid" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Squid" />
-            <CheckBox fx:id="crab_meat" layoutX="10.0" layoutY="204.0" mnemonicParsing="false" onAction="#topAssign" text="Crab Meat" />
-            <CheckBox fx:id="green_pepper" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Green Pepper" />
-            <CheckBox fx:id="onion" layoutX="10.0" layoutY="222.0" mnemonicParsing="false" onAction="#topAssign" text="Onion" />
-            <CheckBox fx:id="mushroom" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Mushroom" />
-            <CheckBox fx:id="black_olive" layoutX="10.0" layoutY="240.0" mnemonicParsing="false" onAction="#topAssign" text="Black Olive" />
-            <CheckBox fx:id="pineapple" layoutX="10.0" layoutY="186.0" mnemonicParsing="false" onAction="#topAssign" text="Pineapple" />
-            <CheckBox fx:id="jalapeno" layoutX="10.0" layoutY="348.0" mnemonicParsing="false" onAction="#topAssign" text="Jalapeno" />
-         </children></VBox>
-      <VBox layoutX="195.0" layoutY="85.0" prefHeight="67.0" prefWidth="181.0">
+      <VBox layoutX="361.0" layoutY="86.0" prefHeight="67.0" prefWidth="181.0">
          <children>
             <Label text="Sauce" />
             <RadioButton fx:id="tomato" mnemonicParsing="false" onAction="#sauceSelect" text="Tomato">
@@ -41,19 +25,28 @@
                   <RadioButton fx:id="medium" layoutX="10.0" layoutY="28.0" mnemonicParsing="false" onAction="#sizeSelect" text="Medium" toggleGroup="$Size" />
                   <RadioButton fx:id="large" layoutX="10.0" layoutY="46.0" mnemonicParsing="false" onAction="#sizeSelect" text="Large" toggleGroup="$Size" />
                   <Label text="Extras" />
-                  <RadioButton fx:id="exSauce" mnemonicParsing="false" onAction="#extraSelect" text="Extra Sauce" />
-                  <RadioButton fx:id="exCheese" mnemonicParsing="false" onAction="#extraSelect" text="Extra Cheese" />
+                  <RadioButton fx:id="exSauce" mnemonicParsing="false" text="Extra Sauce" />
+                  <RadioButton fx:id="exCheese" mnemonicParsing="false" text="Extra Cheese" />
                </children>
             </VBox>
          </children>
       </VBox>
-      <Button layoutX="14.0" layoutY="351.0" mnemonicParsing="false" onAction="#pizzaButton" prefHeight="26.0" prefWidth="109.0" text="BYOP!" />
+      <Button layoutX="50.0" layoutY="393.0" mnemonicParsing="false" onAction="#pizzaButton" prefHeight="26.0" prefWidth="255.0" text="BYOP!" />
       <Label layoutX="69.0" layoutY="32.0" text="Build Your Own Pizza!" textAlignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="price" layoutX="94.0" layoutY="14.0" prefHeight="18.0" prefWidth="38.0" />
-      <ComboBox layoutX="188.0" layoutY="265.0" prefWidth="150.0" />
+      <Label fx:id="price" layoutX="161.0" layoutY="437.0" prefHeight="0.0" prefWidth="95.0" textAlignment="RIGHT" />
+      <ListView fx:id="toppingsListView" layoutX="25.0" layoutY="74.0" prefHeight="126.0" prefWidth="328.0" />
+      <ListView fx:id="selectedToppings" layoutX="25.0" layoutY="250.0" prefHeight="126.0" prefWidth="328.0" />
+      <Button fx:id="add" layoutX="47.0" layoutY="211.0" mnemonicParsing="false" onAction="#toppingAdd" prefHeight="26.0" prefWidth="75.0" text="Add" />
+      <Button fx:id="remove" layoutX="239.0" layoutY="211.0" mnemonicParsing="false" onAction="#toppingRemove" prefHeight="26.0" prefWidth="85.0" text="Remove" />
+      <Label layoutX="162.0" layoutY="419.0" text="Price" underline="true" />
+      <ImageView fitHeight="132.0" fitWidth="167.0" layoutX="368.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/BYOzza.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

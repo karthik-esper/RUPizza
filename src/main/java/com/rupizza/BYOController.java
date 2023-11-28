@@ -19,7 +19,6 @@ import static com.rupizza.PizzaMaker.createPizza;
 
 public class BYOController {
     //BYOB vars
-    private ArrayList<Topping> toppers = new ArrayList<Topping>();
     private int toppingCounter;
     private Sauce sauce;
     private Size size = Size.S;
@@ -35,7 +34,7 @@ public class BYOController {
     private double currentPrice = SMALL_PRICE;
     //FXML elements\
     @FXML
-    private ComboBox sizeDropDown = new ComboBox();
+    private ListView<Topping> toppingsListView;
     @FXML
     private CheckBox sausage = new CheckBox();
     @FXML
@@ -78,38 +77,48 @@ public class BYOController {
     private RadioButton exCheese;
     @FXML
     private Label price;
-
     @FXML
-    protected void topAssign() {
-        sausage.setOnMouseClicked(e -> toppingSelect(Topping.SAU, sausage));
-        pepperoni.setOnMouseClicked(e -> toppingSelect(Topping.PE, pepperoni));
-        beef.setOnMouseClicked(e -> toppingSelect(Topping.BE, beef));
-        ham.setOnMouseClicked(e -> toppingSelect(Topping.HA, ham));
-        shrimp.setOnMouseClicked(e -> toppingSelect(Topping.SH, shrimp));
-        squid.setOnMouseClicked(e -> toppingSelect(Topping.SQ, squid));
-        crab_meat.setOnMouseClicked(e -> toppingSelect(Topping.CM, crab_meat));
-        green_pepper.setOnMouseClicked(e -> toppingSelect(Topping.GP, green_pepper));
-        onion.setOnMouseClicked(e -> toppingSelect(Topping.ON, onion));
-        mushroom.setOnMouseClicked(e -> toppingSelect(Topping.MU, mushroom));
-        black_olive.setOnMouseClicked(e -> toppingSelect(Topping.BO, black_olive));
-        pineapple.setOnMouseClicked(e -> toppingSelect(Topping.PI, pineapple));
-        jalapeno.setOnMouseClicked(e -> toppingSelect(Topping.JA, jalapeno));
+    private Button add;
+    @FXML
+    private Button remove;
+    @FXML
+    private ListView<Topping> selectedToppings;
+    @FXML
+    public void initialize() {
+        toppingsListView.setItems(FXCollections.observableArrayList(
+                Topping.SAU, Topping.PE, Topping.BE, Topping.HA, Topping.SH, Topping.SQ, Topping.CM,
+                Topping.GP, Topping.ON, Topping.MU, Topping.BO, Topping.PI, Topping.JA
+        ));
     }
-
-    protected void toppingSelect(Topping top, CheckBox cbox) {
-        if (cbox.isSelected()) {
-            if (toppingCounter < MAX_TOPPING_SIZE) {
-                toppers.add(top);
+    @FXML
+    protected void toppingAdd() {
+        Topping selected = toppingsListView.getSelectionModel().getSelectedItem();
+        if (toppingCounter < MAX_TOPPING_SIZE) {
+            if(selected != null) {
+                toppingsListView.getItems().remove(selected);
+                selectedToppings.getItems().add(selected);
                 toppingCounter++;
-            } else {
-                cbox.setSelected(false);
-                showAlert("Too many toppings! The maximum number of selectable toppings is 7.");
+            }
+            else {
+                showAlert("Please select a topping to add/remove.");
             }
         } else {
-            toppers.remove(top);
+            showAlert("Too many toppings! The maximum number of selectable toppings is 7.");
+        }
+        pricePrint();
+    }
+
+    @FXML
+    protected void toppingRemove() {
+        Topping selected = selectedToppings.getSelectionModel().getSelectedItem();
+        if(selected != null) {
+            selectedToppings.getItems().remove(selected);
+            toppingsListView.getItems().add(selected);
             toppingCounter--;
         }
-        System.out.println(toppers);
+        else {
+            showAlert("Please select a topping to add/remove.");
+        }
         pricePrint();
     }
 
@@ -131,8 +140,6 @@ public class BYOController {
         if (alfredo.isSelected() == true) {
             sauce = Sauce.AL;
         }
-
-        System.out.println(sauce.toString());
     }
 
     @FXML
@@ -145,18 +152,6 @@ public class BYOController {
         }
         if (large.isSelected() == true) {
             size = Size.L;
-        }
-        pricePrint();
-        System.out.println(size);
-    }
-
-    @FXML
-    protected void extraSelect() {
-        if (exCheese.isSelected()) {
-            extraCheese = true;
-        }
-        else if (exSauce.isSelected()) {
-            extraSauce = true;
         }
         pricePrint();
     }
@@ -174,8 +169,8 @@ public class BYOController {
                 break;
         }
 
-        if (toppers.size() > MIN_TOPPING_SIZE) {
-            currentPrice += ADD_TOP_PRICE * (toppers.size() - MIN_TOPPING_SIZE);
+        if (selectedToppings.getItems().size() > MIN_TOPPING_SIZE) {
+            currentPrice += ADD_TOP_PRICE * (selectedToppings.getItems().size() - MIN_TOPPING_SIZE);
         }
 
         if (exCheese.isSelected()) {
@@ -186,24 +181,26 @@ public class BYOController {
             currentPrice += EXTRAS_PRICE;
         }
 
-        price.setText("Price: " + currentPrice);
+        price.setText("" + currentPrice);
     }
 
     @FXML
     protected void pizzaButton() {
-        if ((toppers.size() < 3) || sauce == null) {
+        if ((selectedToppings.getItems().size() < 3) || sauce == null) {
             showAlert("Please select at least three toppings and a sauce.");
             return;
         }
         Pizza toMake = createPizza("byop");
-        toMake.toppings = toppers;
+        toMake.toppings = new ArrayList<Topping>(selectedToppings.getItems());
         toMake.sauce = sauce;
         toMake.size = size;
         if (exCheese.isSelected() == true) {toMake.setExtraCheese(true);}
         if (exSauce.isSelected() == true) {toMake.setExtraSauce(true);}
-        System.out.println(toMake.toString());
+        Alert success = new Alert(Alert.AlertType.CONFIRMATION);
+        success.setTitle("Pizza creation complete. It's Pizza Time!");
+        success.setContentText(toMake.toString());
         Order currentOrder = Store.getInstance().getCurrentOrder();
         currentOrder.addToOrder(toMake);
+        success.showAndWait();
     }
-
 }
