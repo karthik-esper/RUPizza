@@ -24,7 +24,7 @@ public class BuildYourOwnPizzaTest {
         test.setSize(Size.S);
         test.setExtraSauce(false);
         test.setExtraSauce(false); //price should 0 since there are less than 2 toppings
-        assertEquals(test.price(), 0); //price should 0 since there are less than 2 toppings
+        assertTrue(test.price() == 0); //price should 0 since there are less than 2 toppings
     }
 
 }
