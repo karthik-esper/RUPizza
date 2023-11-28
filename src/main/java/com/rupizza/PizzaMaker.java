@@ -1,6 +1,15 @@
 package com.rupizza;
 
+/**
+ * Factory class that creates pizzas for you based on the given type.
+ * @author Karthik Gangireddy, Vineal Sunkara.
+ */
 public class PizzaMaker {
+    /**
+     * creates pizza based on the given input String.
+     * @param pizzaType string representation of pizza type.
+     * @return pizza of selected type.
+     */
     public static Pizza createPizza(String pizzaType) {
         switch (pizzaType.toLowerCase()) {
             case "deluxe":

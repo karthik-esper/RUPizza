@@ -17,6 +17,10 @@ import java.util.ArrayList;
 
 import static com.rupizza.PizzaMaker.createPizza;
 
+/**
+ * Controller class for Build Your Own Pizza
+ * @author Karthik Gangireddy, Vineal Sunkara
+ */
 public class BYOController {
     //BYOB vars
     private int toppingCounter;
@@ -83,6 +87,10 @@ public class BYOController {
     private Button remove;
     @FXML
     private ListView<Topping> selectedToppings;
+
+    /**
+     * Initializes the controller with ListViews.
+     */
     @FXML
     public void initialize() {
         toppingsListView.setItems(FXCollections.observableArrayList(
@@ -90,6 +98,10 @@ public class BYOController {
                 Topping.GP, Topping.ON, Topping.MU, Topping.BO, Topping.PI, Topping.JA
         ));
     }
+
+    /**
+     * Adds toppings to the pizza based on whatever toppings are selected.
+     */
     @FXML
     protected void toppingAdd() {
         Topping selected = toppingsListView.getSelectionModel().getSelectedItem();
@@ -108,6 +120,9 @@ public class BYOController {
         pricePrint();
     }
 
+    /**
+     * Removes toppings from the pizza based on the selected toppings from ListView.
+     */
     @FXML
     protected void toppingRemove() {
         Topping selected = selectedToppings.getSelectionModel().getSelectedItem();
@@ -132,6 +147,10 @@ public class BYOController {
         alert.setContentText(type);
         alert.showAndWait();
     }
+
+    /**
+     * Updates the pizza based on the sauce selected.
+     */
     @FXML
     protected void sauceSelect() {
         if (tomato.isSelected() == true) {
@@ -142,6 +161,9 @@ public class BYOController {
         }
     }
 
+    /**
+     * Updates pizza based on the size selected.
+     */
     @FXML
     protected void sizeSelect() {
         if (small.isSelected() == true) {
@@ -156,6 +178,10 @@ public class BYOController {
         pricePrint();
     }
 
+    /**
+     * Print the price of the pizza factoring in the amount of toppings and other factors.
+     * Allows the price to update as items are selected.
+     */
     protected void pricePrint() {
         switch (size) {
             case S:
@@ -184,6 +210,10 @@ public class BYOController {
         price.setText("" + currentPrice);
     }
 
+    /**
+     * Creates the actual pizza based on the selected parameters.
+     * Checks to make sure there are no problems with number of toppings or size/sauce.
+     */
     @FXML
     protected void pizzaButton() {
         if ((selectedToppings.getItems().size() < 3) || sauce == null) {

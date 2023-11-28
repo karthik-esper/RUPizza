@@ -45,17 +45,18 @@ public class BuildYourOwnPizza extends Pizza {
 
     /**
      * Setter method to change toppings
+     * @param toppings ArrayList containing the toppings.
      */
     public void setToppings(ArrayList<Topping> toppings) {this.toppings = toppings;}
 
     /**
      * Setter method to change pizza sauce
+     * @param sauce sauce to change the pizza to.
      */
     public void setSauce(Sauce sauce) {this.sauce = sauce;}
 
     /**
      * Setter method to change pizza size.
-     *
      * @param size size of the pizza.
      */
     @Override

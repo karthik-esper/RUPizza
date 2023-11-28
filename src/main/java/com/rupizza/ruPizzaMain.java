@@ -15,7 +15,7 @@ public class ruPizzaMain extends Application {
     /**
      * Main method that starts everything.
      * @param stage stage that begins the project.
-     * @throws IOException
+     * @throws IOException will throw IO exception if needed.
      */
     @Override
     public void start(Stage stage) throws IOException {
