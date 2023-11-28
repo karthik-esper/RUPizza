@@ -196,10 +196,14 @@ public class SpecialtyController {
                 if (sauceSetter.isSelected()) {toMake.setExtraSauce(true);}
                 if (cheeseSetter.isSelected()) {toMake.setExtraCheese(true);}
                 buttonError.setText("Pizza was created!");
+                Alert success = new Alert(Alert.AlertType.CONFIRMATION);
+                success.setTitle("It's Pizza Time!");
+                success.setContentText(toMake.toString());
                 Order currentOrder = Store.getInstance().getCurrentOrder();
                 toMake = updatePrice(toMake);
                 currentOrder.addToOrder(toMake);
                 clearAll();
+                success.showAndWait();
             }
             else {
                 showAlert("No Size");
