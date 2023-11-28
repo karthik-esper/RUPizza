@@ -182,6 +182,7 @@ public class BYOController {
      * Print the price of the pizza factoring in the amount of toppings and other factors.
      * Allows the price to update as items are selected.
      */
+    @FXML
     protected void pricePrint() {
         switch (size) {
             case S:
