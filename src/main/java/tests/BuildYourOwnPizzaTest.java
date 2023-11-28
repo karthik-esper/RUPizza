@@ -1,5 +1,6 @@
 package tests;
 import com.rupizza.*;
+
 import static com.rupizza.PizzaMaker.createPizza;
 import static org.junit.Assert.*;
 
@@ -18,6 +19,12 @@ public class BuildYourOwnPizzaTest {
     @org.junit.Test
     public void testTopsLessThan3() {
         Pizza test = createPizza("byop");
+        ArrayList<Topping> toppers = new ArrayList<Topping>();
+        test.setToppings(toppers);
+        test.setSize(Size.S);
+        test.setExtraSauce(false);
+        test.setExtraSauce(false); //price should 0 since there are less than 2 toppings
+        assertEquals(test.price(), 0); //price should 0 since there are less than 2 toppings
     }
 
 }
