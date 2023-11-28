@@ -80,6 +80,8 @@ public class SpecialtyController {
                 specialtyToppings.setItems(toppingList);
                 Pizza temp = createPizza(newValue);
                 sizeChoices.getSelectionModel().clearSelection();
+                sauceSetter.setSelected(false);
+                cheeseSetter.setSelected(false);
                 priceBox.setText("Price: " + String.valueOf(temp.price()));
             }
         });
@@ -194,7 +196,6 @@ public class SpecialtyController {
                 if (sauceSetter.isSelected()) {toMake.setExtraSauce(true);}
                 if (cheeseSetter.isSelected()) {toMake.setExtraCheese(true);}
                 buttonError.setText("Pizza was created!");
-                System.out.println(toMake.toString());
                 Order currentOrder = Store.getInstance().getCurrentOrder();
                 toMake = updatePrice(toMake);
                 currentOrder.addToOrder(toMake);

@@ -7,7 +7,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * initializes the actual controller application.
+ * @author Karthik Gangireddy, Vineal Sunkara
+ */
 public class ruPizzaMain extends Application {
+    /**
+     * Main method that starts everything.
+     * @param stage stage that begins the project.
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ruPizzaMain.class.getResource("MainMenu.fxml"));
@@ -17,6 +26,10 @@ public class ruPizzaMain extends Application {
         stage.show();
     }
 
+    /**
+     * main method
+     * @param args command line.
+     */
     public static void main(String[] args) {
         launch();
     }
