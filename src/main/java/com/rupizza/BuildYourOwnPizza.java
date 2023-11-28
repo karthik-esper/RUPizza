@@ -32,10 +32,11 @@ public class BuildYourOwnPizza extends Pizza {
             price += ADD_LARGE;
         }
 
+        if (toppings.size() < TOPPING_START) {
+            return 0;
+        }
+        
         for (int i = TOPPING_START; i < toppings.size(); i++) {
-            if (toppings.size() < TOPPING_START) {
-                return 0;
-            }
             price += ADD_MORE_TOPPINGS;
         }
         if (getExtraCheese()) {
