@@ -13,6 +13,7 @@ public class BuildYourOwnPizza extends Pizza {
     private static final double ADD_MORE_TOPPINGS = 1.49; //extra charge for additional toppings past 3
     private static final int TOPPING_START = 3; //starting place in the toppings ArrayList since the first 3 are included in price
     private static final double EXTRA_CHARGE = 1.00; //charge for selecting extra sauce or cheese
+    private static final int TOPPING_END = 7; //maximum number of toppings allowed for BYOP
 
     /**
      * Default Constructor for building your own pizza
@@ -32,7 +33,7 @@ public class BuildYourOwnPizza extends Pizza {
             price += ADD_LARGE;
         }
 
-        if (toppings.size() < TOPPING_START) {
+        if (toppings.size() < TOPPING_START || toppings.size() > TOPPING_END) {
             return 0;
         }
         
