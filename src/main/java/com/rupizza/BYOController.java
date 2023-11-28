@@ -92,7 +92,7 @@ public class BYOController {
      * Initializes the controller with ListViews.
      */
     @FXML
-    public void initialize() {
+    protected void initialize() {
         toppingsListView.setItems(FXCollections.observableArrayList(
                 Topping.SAU, Topping.PE, Topping.BE, Topping.HA, Topping.SH, Topping.SQ, Topping.CM,
                 Topping.GP, Topping.ON, Topping.MU, Topping.BO, Topping.PI, Topping.JA
