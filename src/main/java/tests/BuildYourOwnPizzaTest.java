@@ -1,10 +1,11 @@
 package tests;
 import com.rupizza.*;
-
 import static com.rupizza.PizzaMaker.createPizza;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 /**
  * Junit test file for BuildYourOwnPizza price() method
@@ -17,7 +18,6 @@ public class BuildYourOwnPizzaTest {
     @org.junit.Test
     public void testTopsLessThan3() {
         Pizza test = createPizza("byop");
-        //test.toppings = new ArrayList<Topping>(Topping.PI,Topping.PE);
     }
 
 }

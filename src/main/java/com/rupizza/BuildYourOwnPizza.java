@@ -44,12 +44,6 @@ public class BuildYourOwnPizza extends Pizza {
     }
 
     /**
-     * Setter method to change toppings
-     * @param toppings ArrayList containing the toppings.
-     */
-    public void setToppings(ArrayList<Topping> toppings) {this.toppings = toppings;}
-
-    /**
      * Setter method to change pizza sauce
      * @param sauce sauce to change the pizza to.
      */
@@ -105,4 +99,23 @@ public class BuildYourOwnPizza extends Pizza {
         pizza += String.format("%.2f", this.price());
         return pizza;
     }
+
+    /**
+     * sets toppings to a certain arraylist.
+     * @param toppings arraylist to set toppings to.
+     */
+    @Override
+    public void setToppings(ArrayList<Topping> toppings) {
+        this.toppings = toppings;
+
+    }
+
+    /**
+     * Returns the toppings ArrayList.
+     * @return the toppings ArrayList.
+     */
+    @Override
+    public ArrayList<Topping> getToppings() {
+        return this.toppings;
+    };
 }

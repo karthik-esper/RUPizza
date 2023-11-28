@@ -1,4 +1,5 @@
 package com.rupizza;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -19,5 +20,7 @@ public abstract class Pizza {
     public boolean getExtraSauce() {return this.extraSauce;} //getter method
     public boolean getExtraCheese() {return this.extraCheese;} //getter method
     public abstract String toString(); //polymorphism
+    public abstract ArrayList<Topping> getToppings();
+    public abstract void setToppings(ArrayList<Topping> toppings);
 
 }

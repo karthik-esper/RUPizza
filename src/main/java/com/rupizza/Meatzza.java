@@ -1,5 +1,6 @@
 package com.rupizza;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 /**
  * Subclass of Pizza that represents the Meatzza pizza option.
@@ -102,5 +103,24 @@ public class Meatzza extends Pizza{
         pizza += String.format("%.2f", this.price());
         return pizza;
     }
+
+    /**
+     * sets toppings to a certain arraylist.
+     * @param toppings arraylist to set toppings to.
+     */
+    @Override
+    public void setToppings(ArrayList<Topping> toppings) {
+        this.toppings = toppings;
+
+    }
+
+    /**
+     * Returns the toppings ArrayList.
+     * @return the toppings ArrayList.
+     */
+    @Override
+    public ArrayList<Topping> getToppings() {
+        return this.toppings;
+    };
 
 }
